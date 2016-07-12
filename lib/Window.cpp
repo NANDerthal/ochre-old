@@ -68,6 +68,10 @@ bool Window::init() {
 }
 
 void Window::update() {
-	
+	if ( window != NULL ) {
+		SDL_SetWindowTitle( window, title.c_str() );
+		SDL_SetWindowSize( window, width, height );
+		glViewport( 0, 0, width, height );
+	}
 }
 
