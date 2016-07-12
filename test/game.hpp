@@ -3,7 +3,7 @@
 
 namespace game {
 
-	void main();
+	void game();
 	
 	void test();
 
