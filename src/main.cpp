@@ -39,7 +39,7 @@ int main( int argc, char* argv[] ) {
 	
 	if ( !game.init() ) {
 		printf("Error initializing game!");
-		exit(0);
+		exit(1);
 	}
 	
 	if ( !test ) {
