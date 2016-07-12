@@ -3,12 +3,11 @@
 
 #include <string>
 
-#include "game.hpp"
 #include "Window.h"
 
 class Engine {
 
-private:
+protected:
 
 	Window* window;
 
@@ -22,19 +21,15 @@ public:
 	// ========== functions for main.cpp ==========
 	// do not call these functions in your own code
 	
-	// friend necessary game functions
-	friend void game::game();
-	friend void game::test();
-	
 	// returns false if there is an error initializing
 	// otherwise, returns true
 	bool init();
 	
 	// run production version of game
-	void run();
+	virtual void run() = 0;
 	
 	// run test functions
-	void runTest();
+	virtual void runTest() = 0;
 	
 	// ========== API functions ==========
 	

@@ -54,14 +54,6 @@ bool Engine::init() {
 	return true;
 }
 
-void Engine::run() {
-	game::game();
-}
-
-void Engine::runTest() {
-	game::test();
-}
-
 // ========== API functions ==========
 
 void Engine::setWindowTitle( const std::string &winTitle ) {
