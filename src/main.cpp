@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <cstring>
 
-#include "Engine.h"
+#include "Game.h"
 
 #ifdef main
 	#undef main
@@ -35,18 +35,21 @@ int main( int argc, char* argv[] ) {
 	
 	// Run game
 	
-	Engine game;
+	Engine* game = new Game;
 	
-	if ( !game.init() ) {
+	if ( !game->init() ) {
 		printf("Error initializing game!\n");
 		exit(1);
 	}
 	
 	if ( !test ) {
-		game.run();
+		game->run();
 	} else {
-		game.runTest();
+		game->runTest();
 	}
+	
+	delete game;
+	game = nullptr;
 
 	return 0;
 

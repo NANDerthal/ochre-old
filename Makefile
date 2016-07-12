@@ -14,7 +14,6 @@ EXECUTABLE_NAMES = $(EXECUTABLE_MAIN)
 #EXCLUDE += $(EXCLUDE:src/%.cpp=include/%.h)
 
 SOURCES = $(wildcard lib/*.cpp)
-SOURCES += $(wildcard test/*.cpp)
 SOURCES := $(filter-out $(EXCLUDE), $(SOURCES))
 
 OBJECTS = $(SOURCES:src/%.cpp=%.o)
@@ -68,9 +67,9 @@ clean :
 	$(CC) $(OBJECTS) $(MAIN_OBJECTS) $(INCLUDE_PATHS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $*.out
 
 # ========== OBJECTS ==========
+Window.o: include/Window.h
 Engine.o: include/Engine.h
-
-Game.o: test/game.hpp
+Game.o: include/Game.h
 
 main.o: $(OBJECTS) $(MAIN)
 
