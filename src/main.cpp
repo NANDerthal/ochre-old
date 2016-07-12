@@ -24,11 +24,9 @@ int main( int argc, char* argv[] ) {
 	} else if ( argc == 2 ) {
 		if ( !strcmp( "-h", argv[1] ) || !strcmp( "--help", argv[1] ) ) {
 			helpOut();
-		}
-		else if ( !strcmp( "-t", argv[1] ) || !strcmp( "--test", argv[1] ) ) {
+		} else if ( !strcmp( "-t", argv[1] ) || !strcmp( "--test", argv[1] ) ) {
 			test = 1;
-		}
-		else {
+		} else {
 			invalidOut();
 		}
 	} else {
