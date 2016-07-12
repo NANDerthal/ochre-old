@@ -37,7 +37,10 @@ int main( int argc, char* argv[] ) {
 	
 	Engine game;
 	
-	game.init();
+	if ( !game.init() ) {
+		printf("Error initializing game!");
+		exit(0);
+	}
 	
 	if ( !test ) {
 		game.run();
