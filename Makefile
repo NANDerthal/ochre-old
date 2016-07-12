@@ -1,6 +1,6 @@
 CC = g++
 
-INCLUDE_PATHS = -I./include -I./src -I./lib
+INCLUDE_PATHS = -I./include -I./src -I./lib -I./test
 
 LINKER_FLAGS = -lSDL2 -lSDL2_ttf -lGLEW -lGL -lSOIL
 
@@ -14,6 +14,7 @@ EXECUTABLE_NAMES = $(EXECUTABLE_MAIN)
 #EXCLUDE += $(EXCLUDE:src/%.cpp=include/%.h)
 
 SOURCES = $(wildcard lib/*.cpp)
+SOURCES += $(wildcard test/*.cpp)
 SOURCES := $(filter-out $(EXCLUDE), $(SOURCES))
 
 OBJECTS = $(SOURCES:src/%.cpp=%.o)
@@ -67,20 +68,9 @@ clean :
 	$(CC) $(OBJECTS) $(MAIN_OBJECTS) $(INCLUDE_PATHS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $*.out
 
 # ========== OBJECTS ==========
-#Animation.o: include/Animation.h Sprite.o
-#Background.o: include/Background.h Animation.o
-#Camera.o: include/Camera.h utility.o
-#Character.o: include/Character.h Animation.o
-#Collision.o: include/collision.hpp
-#Game.o: include/Game.h SaveFile.o Window.o
-#Input.o: include/Input.h
-#Parallax.o: include/Parallax.h Background.o Physics.o utility.o
-#Physics.o: include/Physics.h
-#Player.o: include/Player.h
-#SaveFile.o: include/Savefile.h
-#Sprite.o: include/Sprite.h
-#utility.o: include/utility.hpp
-#Window.o: include/Window.h
+Engine.o: include/Engine.h
+
+Game.o: test/game.hpp
 
 main.o: $(OBJECTS) $(MAIN)
 
