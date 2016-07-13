@@ -10,6 +10,14 @@ Window::Window() {
 	height = 480;
 }
 
+Window::Window( const std::string &winTitle, const int widthIn, const int heightIn ) {
+	window = NULL;
+	glContext = NULL;
+	
+	setTitle( winTitle );
+	setSize( widthIn, heightIn );
+}
+
 Window::~Window() {
 	SDL_GL_DeleteContext( glContext );
 	glContext = NULL;
@@ -20,7 +28,7 @@ Window::~Window() {
 
 // ========== public members ==========
 
-// setting functions
+// ===== setting functions =====
 
 void Window::setTitle( const std::string &winTitle ) {
 	title = winTitle;
@@ -31,7 +39,7 @@ void Window::setSize( const int widthIn, const int heightIn ) {
 	height = heightIn;
 }
 
-// getting functions
+// ===== getting functions =====
 
 std::string Window::getTitle() const {
 	return title;
@@ -45,7 +53,7 @@ int Window::getHeight() const {
 	return height;
 }
 
-// Library-dependent functions
+// ===== library-dependent functions =====
 
 bool Window::init() {
 	// Initialize window
@@ -67,6 +75,7 @@ bool Window::init() {
 	return true;
 }
 
+// update to use set variables
 void Window::update() {
 	if ( window != NULL ) {
 		SDL_SetWindowTitle( window, title.c_str() );

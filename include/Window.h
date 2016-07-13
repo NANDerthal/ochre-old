@@ -24,21 +24,26 @@ public:
 	// ========== constructors and destructors ==========
 	
 	Window();
+	Window( const std::string &winTitle, const int widthIn, const int heightIn );
 	~Window();
 	
 	// ========== public members ==========
 	
-	// setting functions
+	// ===== setting functions =====
 	void setTitle( const std::string &winTitle );
 	void setSize( const int widthIn, const int heightIn );
 	
-	// getting functions
+	// ===== getting functions =====
 	std::string getTitle() const;
 	int getWidth() const;
 	int getHeight() const;
 	
-	// update to use set variables
+	// ===== library-dependent functions =====
+	
+	// create windows using variables set by setting functions
 	bool init();
+
+	// update to use set variables
 	void update();
 
 };
