@@ -33,11 +33,7 @@ public:
 	
 	// ========== API functions ==========
 	
-	void setWindowTitle( const std::string &winTitle );
 	
-	void setWindowSize( const int width, const int height );
-	
-	void delay( int numMS );
 
 };
 

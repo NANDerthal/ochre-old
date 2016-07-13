@@ -56,15 +56,5 @@ bool Engine::init() {
 
 // ========== API functions ==========
 
-void Engine::setWindowTitle( const std::string &winTitle ) {
-	window->setTitle( winTitle );
-}
 
-void Engine::setWindowSize( const int width, const int height ) {
-	window->setSize( width, height );
-}
-
-void Engine::delay( int numMS ) {
-	SDL_Delay( numMS );
-}
 
