@@ -1,6 +1,6 @@
 CC = g++
 
-INCLUDE_PATHS = -I./include -I./src -I./lib -I./test
+INCLUDE_PATHS = -I./include -I./src -I./lib -I./test -I./game
 
 LINKER_FLAGS = -lSDL2 -lSDL2_ttf -lGLEW -lGL -lSOIL
 
@@ -14,6 +14,7 @@ EXECUTABLE_NAMES = $(EXECUTABLE_MAIN)
 #EXCLUDE += $(EXCLUDE:src/%.cpp=include/%.h)
 
 SOURCES = $(wildcard lib/*.cpp)
+SOURCES += $(wildcard game/*.cpp)
 SOURCES := $(filter-out $(EXCLUDE), $(SOURCES))
 
 OBJECTS = $(SOURCES:src/%.cpp=%.o)
@@ -69,7 +70,7 @@ clean :
 # ========== OBJECTS ==========
 Window.o: include/Window.h
 Engine.o: include/Engine.h
-Game.o: include/Game.h
+Game.o: game/Game.h
 
 main.o: $(OBJECTS) $(MAIN)
 
