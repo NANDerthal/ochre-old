@@ -32,8 +32,10 @@ public:
 	virtual void runTest() = 0;
 	
 	// ========== API functions ==========
+	// optimally, these should make it possible for the user to never touch the
+	// underlying libraries used to implement the engine (SDL, OpenGL, etc)
 	
-	
+	void delay( int numMS );
 
 };
 

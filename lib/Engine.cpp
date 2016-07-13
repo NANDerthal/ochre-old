@@ -56,5 +56,7 @@ bool Engine::init() {
 
 // ========== API functions ==========
 
-
+void Engine::delay( int numMS ) {
+	SDL_Delay( numMS );
+}
 
