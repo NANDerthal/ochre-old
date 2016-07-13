@@ -4,7 +4,9 @@
 #include "Engine.h"
 
 /* 
- * NOTE: This is a derived class from the abstract base class Engine.
+ * NOTE: This is a derived class from the abstract base class Engine. Rename
+ * or copy Game-template.* to Game.* to define your own Game class. This
+ * particular instance is used by the developers for testing purposes.
  *
  * It can make use of the functions defined in Engine, and is meant to hold
  * user-defined functions that define the behavior of the actual game. None of
