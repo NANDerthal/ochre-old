@@ -12,21 +12,21 @@
 
 Engine::Engine() {
 	window = new Window;
-}
+} // Engine
 
 Engine::~Engine() {
 	delete window;
 	window = nullptr;
 	
 	SDL_Quit();
-}
+} // ~Engine
 
 // ========== functions for main.cpp ==========
 
 bool Engine::init() {
 	// Initialize SDL
 	if ( SDL_Init( SDL_INIT_VIDEO ) < 0 ) {
-		printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
+		printf( "SDL could not initialize! SDL error: %s\n", SDL_GetError() );
 		return false;
 	}
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
@@ -52,11 +52,11 @@ bool Engine::init() {
 	glViewport( 0, 0, window->getWidth(), window->getHeight() );
 
 	return true;
-}
+} // init
 
 // ========== API functions ==========
 
 void Engine::delay( int numMS ) {
 	SDL_Delay( numMS );
-}
+} // delay
 
