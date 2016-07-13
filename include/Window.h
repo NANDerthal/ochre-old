@@ -19,10 +19,12 @@
 class Window {
 
 private:
+
 	SDL_Window* window;
 	SDL_GLContext glContext;
 	std::string title;
 	int width, height;
+	bool updateMeta;
 
 public:
 
@@ -32,7 +34,13 @@ public:
 	Window( const std::string &winTitle, const int widthIn, const int heightIn );
 	~Window();
 	
-	// ========== public members ==========
+	// ========== engine internal functions ==========
+	// do not call these functions in your own code
+	
+	// create windows using variables set by setting functions
+	bool init();
+
+	// ========== API functions ==========
 	
 	// ===== setting functions =====
 	void setTitle( const std::string &winTitle );
@@ -43,11 +51,7 @@ public:
 	int getWidth() const;
 	int getHeight() const;
 	
-	// ===== library-dependent functions =====
-	
-	// create windows using variables set by setting functions
-	bool init();
-
+	// ===== drawing functions =====
 	// update to use set variables
 	void update();
 
