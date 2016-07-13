@@ -9,9 +9,11 @@ MAIN = src/main.cpp
 EXECUTABLE_MAIN = main.out
 EXECUTABLE_NAMES = $(EXECUTABLE_MAIN)
 
-#EXCLUDE = Game SaveFile
-#EXCLUDE := $(EXCLUDE:%=src/%.cpp)
-#EXCLUDE += $(EXCLUDE:src/%.cpp=include/%.h)
+EXCLUDE = Game-template
+EXCLUDE := $(EXCLUDE:%=src/%.cpp)
+EXCLUDE += $(EXCLUDE:src/%.cpp=include/%.h)
+EXCLUDE += $(EXCLUDE:src/%.cpp=game/%.h)
+EXCLUDE += $(EXCLUDE:src/%.cpp=game/%.cpp)
 
 SOURCES = $(wildcard lib/*.cpp)
 SOURCES += $(wildcard game/*.cpp)
