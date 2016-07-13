@@ -1,6 +1,6 @@
 CC = g++
 
-INCLUDE_PATHS = -I./include -I./src -I./lib -I./test -I./game
+INCLUDE_PATHS = -I./include -I./src -I./lib -I./test -I./game -I./backend/include -I./backend/lib
 
 LINKER_FLAGS = -lSDL2 -lSDL2_ttf -lGLEW -lGL -lSOIL
 
@@ -17,6 +17,7 @@ EXCLUDE += $(EXCLUDE:src/%.cpp=game/%.cpp)
 
 SOURCES = $(wildcard lib/*.cpp)
 SOURCES += $(wildcard game/*.cpp)
+SOURCES += $(wildcard backend/lib/*.cpp)
 SOURCES := $(filter-out $(EXCLUDE), $(SOURCES))
 
 OBJECTS = $(SOURCES:src/%.cpp=%.o)
@@ -70,9 +71,15 @@ clean :
 	$(CC) $(OBJECTS) $(MAIN_OBJECTS) $(INCLUDE_PATHS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $*.out
 
 # ========== OBJECTS ==========
+
+# user-facing
 Window.o: include/Window.h
 Engine.o: include/Engine.h
 Game.o: game/Game.h
+
+# backend
+Shader.o: backend/include/Shader.h
+ShaderProgram.o: backend/include/ShaderProgram.h
 
 main.o: $(OBJECTS) $(MAIN)
 
