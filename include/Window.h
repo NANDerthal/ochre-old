@@ -11,6 +11,11 @@
 	#include <GL/glew.h>
 #endif
 
+/*
+ * This class is a member of Engine.
+ * Therefore, public members must abstract away library-related details.
+ */
+
 class Window {
 
 private:
