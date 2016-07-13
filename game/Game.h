@@ -8,11 +8,6 @@
  * or copy Game-template.* to Game.* to define your own Game class. This
  * particular instance is used by the developers for testing purposes.
  *
- * It can make use of the functions defined in Engine, and is meant to hold
- * user-defined functions that define the behavior of the actual game. None of
- * the functions in this class are implemented, and are intended to be defined
- * by the user of this engine library.
- *
  * Main calls the run() function when the game is compiled and run without any
  * flags. This is where the game loop should go.
  *
