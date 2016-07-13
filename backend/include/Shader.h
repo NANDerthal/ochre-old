@@ -26,7 +26,6 @@ public:
 	Shader( std::string filepathIn, GLenum shaderTypeIn );
 	~Shader();
 
-
 	// ========== getters and setters ==========
 	
 	// NOTE: compiles shader with createShader if not compiled yet
