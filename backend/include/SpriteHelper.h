@@ -13,7 +13,7 @@ private:
 
 public:
 
-	// ========== constructors and destructors ==========                                                          
+	// ========== constructors and destructors ==========
 
 	SpriteHelper();
 	~SpriteHelper();
