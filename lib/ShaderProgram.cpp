@@ -34,6 +34,7 @@ bool ShaderProgram::buildShaderProgram( const std::string shaderName ) {
 	}
 	
 	linked = true;
+	
 	return true;
 } // buildShaderProgramID
 
