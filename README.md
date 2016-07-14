@@ -4,7 +4,7 @@ Game engine.
 
 ## Documentation
 
-View [documentation](http://ochre.readthedocs.io/en/latest/) here.
+[View documentation here.](http://ochre.readthedocs.io/en/latest/)
 
 ## Installation
 
