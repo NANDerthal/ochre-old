@@ -14,6 +14,9 @@ class SpriteHelper {
 private:
 
 	std::string filepath;
+	GLuint textureID;
+	int textureWidth, textureHeight;
+	bool loaded;
 
 public:
 
@@ -24,7 +27,14 @@ public:
 
 	// ========== getters and setters ==========
 
-	// ========== API functions ==========
+	int getWidth() const;
+	int getHeight() const;
+
+	void setFilepath( const std::string filepathIn );
+
+	// ========== loading ==========
+
+	bool load( const std::string filepathIn = " " );
 
 };
 
