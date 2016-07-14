@@ -1,4 +1,4 @@
-#ifdef SPRITE_HELPER_H
+#ifndef SPRITE_HELPER_H
 #define SPRITE_HELPER_H
 
 #ifdef USING_WINDOWS

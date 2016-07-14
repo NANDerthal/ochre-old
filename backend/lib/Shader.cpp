@@ -2,6 +2,8 @@
 
 #include <fstream>
 
+// ========== constructors and destructors ==========
+
 Shader::Shader() {
 	filepath = "";
 	compiled = false;

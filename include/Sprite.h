@@ -1,4 +1,4 @@
-#ifdef SPRITE_H
+#ifndef SPRITE_H
 #define SPRITE_H
 
 #include "SpriteHelper.h"
