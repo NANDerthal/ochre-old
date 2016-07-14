@@ -4,17 +4,12 @@
 
 // ========== constructors and destructors ==========
 
-Shader::Shader() {
-	filepath = "";
-	compiled = false;
-	return;
-} // Shader()
-
-Shader::Shader( std::string filepathIn, GLenum shaderTypeIn ) {
+Shader::Shader( const std::string filepathIn, const GLenum shaderTypeIn ) {
 	setFilepath( filepathIn );
 	setShaderType( shaderTypeIn );
+	compiled = false;
 	return;
-} // Shader( filepathIn, shaderTypeIn )
+} // Shader
 
 Shader::~Shader() {
 	if ( compiled ) {
@@ -37,13 +32,13 @@ GLuint Shader::getShaderID() {
 	return shaderID;
 } // getShaderID
 
-void Shader::setFilepath( std::string filepathIn ) {
+void Shader::setFilepath( const std::string filepathIn ) {
 	filepath = filepathIn;
 	compiled = false;
 	return;
 } // setFilepath
 
-void Shader::setShaderType( GLenum shaderTypeIn ) {
+void Shader::setShaderType( const GLenum shaderTypeIn ) {
 	shaderType = shaderTypeIn;
 	compiled = false;
 	return;
@@ -51,7 +46,7 @@ void Shader::setShaderType( GLenum shaderTypeIn ) {
 
 // ========== compilation ==========
 
-bool Shader::createShader( std::string filepathIn, GLenum shaderTypeIn ) {
+bool Shader::createShader( const std::string filepathIn, const GLenum shaderTypeIn ) {
 	if ( compiled ) {
 		glDeleteShader( shaderID );
 		compiled = false;

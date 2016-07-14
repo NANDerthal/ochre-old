@@ -8,7 +8,7 @@ ShaderProgram::ShaderProgram() {
 
 // ========== API functions ========== 
 
-bool ShaderProgram::buildShaderProgram( std::string shaderName ) {
+bool ShaderProgram::buildShaderProgram( const std::string shaderName ) {
 
 	std::string vertexFilepath = "backend/shaders/" + shaderName + ".vert";
 	std::string fragmentFilepath = "backend/shaders/" + shaderName + ".frag";
@@ -39,5 +39,5 @@ bool ShaderProgram::buildShaderProgram( std::string shaderName ) {
 
 void ShaderProgram::setActive() {
 	glUseProgram( shaderProgramID );
-}
+} // setActive
 

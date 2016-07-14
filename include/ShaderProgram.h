@@ -20,7 +20,7 @@ public:
 
 	// ========== API functions ==========
 
-	bool buildShaderProgram( std::string shaderName );
+	bool buildShaderProgram( const std::string shaderName );
 	void setActive();
 
 };

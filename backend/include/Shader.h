@@ -22,8 +22,7 @@ public:
 
 	// ========== constructors and destructors ==========
 	
-	Shader();
-	Shader( std::string filepathIn, GLenum shaderTypeIn );
+	Shader( const std::string filepathIn = "", const GLenum shaderTypeIn =- NULL );
 	~Shader();
 
 	// ========== getters and setters ==========
@@ -31,13 +30,13 @@ public:
 	// NOTE: compiles shader with createShader if not compiled yet
 	GLuint getShaderID();
 	
-	void setFilepath( std::string filepathIn );
-	void setShaderType ( GLenum shaderTypeIn );
+	void setFilepath( const std::string filepathIn );
+	void setShaderType ( const GLenum shaderTypeIn );
 	
 	// ========== compilation ==========
 	
 	// returns true if compiled successfully, false if compilation failed
-	bool createShader( std::string filepathIn, GLenum shaderTypeIn );
+	bool createShader( const std::string filepathIn, const GLenum shaderTypeIn );
 
 };
 
