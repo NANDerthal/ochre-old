@@ -23,7 +23,7 @@ Shader::~Shader() {
 
 GLuint Shader::getShaderID() {
 	if ( !compiled ) {
-		compiled = createShader( filepath, shaderType );
+		compiled = createShader();
 		if ( !compiled ) {
 			exit(1);
 		}
@@ -52,8 +52,10 @@ bool Shader::createShader( const std::string filepathIn, const GLenum shaderType
 		compiled = false;
 	}
 	
-	filepath = filepathIn;
-	shaderType = shaderTypeIn;
+	if ( filepathIn != "" ) {
+		filepath = filepathIn;
+		shaderType = shaderTypeIn;
+	}
 	
 	std::ifstream shaderFile;
 	shaderFile.open( filepath.c_str() );

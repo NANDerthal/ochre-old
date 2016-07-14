@@ -22,7 +22,7 @@ public:
 
 	// ========== constructors and destructors ==========
 	
-	Shader( const std::string filepathIn = "", const GLenum shaderTypeIn =- NULL );
+	Shader( const std::string filepathIn = "", const GLenum shaderTypeIn = NULL );
 	~Shader();
 
 	// ========== getters and setters ==========
@@ -36,7 +36,7 @@ public:
 	// ========== compilation ==========
 	
 	// returns true if compiled successfully, false if compilation failed
-	bool createShader( const std::string filepathIn, const GLenum shaderTypeIn );
+	bool createShader( const std::string filepathIn = "", const GLenum shaderTypeIn = NULL );
 
 };
 
