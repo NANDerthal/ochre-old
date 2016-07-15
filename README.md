@@ -14,8 +14,8 @@ External dependencies are listed below, and the installation instructions for th
 
 Dependencies:
 
-* [SDL2](www.libsdl.org)
 * OpenGL 3.3 or higher
+* [SDL2](www.libsdl.org)
 * [GLEW 1.1](http://glew.sourceforge.net)
 * [SOIL](http://www.lonesock.net/soil.html)
 
