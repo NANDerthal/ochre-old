@@ -48,14 +48,14 @@ bool SpriteHelper::load( const std::string filepathIn ) {
 	if ( filepathIn != "" ) {
 		filepath = filepathIn;
 	}
-	
+
 	// load image from file
-	unsigned char* image = SOIL_load_image( "img/container.jpg", &textureWidth, &textureHeight, 0, SOIL_LOAD_RGB );
+	unsigned char* image = SOIL_load_image( filepathIn, &textureWidth, &textureHeight, 0, SOIL_LOAD_RGB );
 	if ( image == NULL ) {
 		printf( "Image %s could not be loaded! SOIL error: %s\n", filepath, SOIL_last_result() );
 		return false;
 	}
-	
+
 	// create OpenGL texture from image
 	glGenTextures( 1, &textureID );
 	glBindTexture( GL_TEXTURE_2D, textureID );
@@ -66,12 +66,12 @@ bool SpriteHelper::load( const std::string filepathIn ) {
 		printf( "Image %s could not be bound as a texture! OpenGL error: %d\n", filepath, error );
 		return false;
 	}
-	
+
 	// free image (no longer needed)
 	SOIL_free_image_data( image );
-	
+
 	loaded = true;
-	
+
 	return true;
 } // load
 
