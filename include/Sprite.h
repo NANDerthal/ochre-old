@@ -1,22 +1,44 @@
 #ifndef SPRITE_H
 #define SPRITE_H
 
+#include <string>
+#include <vector>
+
 #include "SpriteHelper.h"
+
+struct SpriteData {
+	std::string filepath;
+	int frameWidth, frameHeight;
+	std::vector < int > numFrames;
+};
 
 class Sprite {
 
 private:
 
+	SpriteHelper* helper;
+
+	std::vector < int > numFrames;
+	int frameWidth, frameHeight;
+	int numAnimations;
+
+	std::vector < GLfloat* > vertices;
+	GLuint indices[];
+	GLuint EBO, VBO;
+
 public:
 
 	// ========== constructors and destructors ==========
 
-	Sprite();
+	Sprite( const SpriteData &spriteData );
 	~Sprite();
 
 	// ========== getters and setters ==========
 
+
 	// ========== API functions ==========
+
+	bool load( std::string filepath = "" );
 
 };
 
