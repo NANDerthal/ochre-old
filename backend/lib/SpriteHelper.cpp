@@ -50,7 +50,7 @@ bool SpriteHelper::load( const std::string filepathIn ) {
 	}
 
 	// load image from file
-	unsigned char* image = SOIL_load_image( filepathIn, &textureWidth, &textureHeight, 0, SOIL_LOAD_RGB );
+	unsigned char* image = SOIL_load_image( filepathIn.c_str(), &textureWidth, &textureHeight, 0, SOIL_LOAD_RGB );
 	if ( image == NULL ) {
 		printf( "Image %s could not be loaded! SOIL error: %s\n", filepath, SOIL_last_result() );
 		return false;
