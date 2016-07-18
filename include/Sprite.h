@@ -22,9 +22,11 @@ private:
 	int frameWidth, frameHeight;
 	int numAnimations;
 
-	std::vector < GLfloat* > vertices;
+	std::vector < std::vector < GLint > > vertexArrays;
 	GLuint indices[];
 	GLuint EBO, VBO;
+
+	void generateVertices();
 
 public:
 
