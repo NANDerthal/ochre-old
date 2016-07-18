@@ -31,6 +31,11 @@ int SpriteHelper::getHeight() const {
 	return textureHeight;
 } // getHeight
 
+void SpriteHelper::setActive() {
+	glBindTexture( GL_TEXTURE_2D, textureID );
+	return;
+} // setActive
+
 void SpriteHelper::setFilepath( const std::string filepathIn ) {
 	filepath = filepathIn;
 	loaded = false;
@@ -50,9 +55,9 @@ bool SpriteHelper::load( const std::string filepathIn ) {
 	}
 
 	// load image from file
-	unsigned char* image = SOIL_load_image( filepathIn.c_str(), &textureWidth, &textureHeight, 0, SOIL_LOAD_RGB );
+	unsigned char* image = SOIL_load_image( filepath.c_str(), &textureWidth, &textureHeight, 0, SOIL_LOAD_RGB );
 	if ( image == NULL ) {
-		printf( "Image %s could not be loaded! SOIL error: %s\n", filepath, SOIL_last_result() );
+		printf( "Image %s could not be loaded! SOIL error: %s\n", filepath.c_str(), SOIL_last_result() );
 		return false;
 	}
 
@@ -61,9 +66,10 @@ bool SpriteHelper::load( const std::string filepathIn ) {
 	glBindTexture( GL_TEXTURE_2D, textureID );
 	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image );
 	glGenerateMipmap( GL_TEXTURE_2D );
+	glBindTexture( GL_TEXTURE_2D, NULL );
 	GLenum error = glGetError();
 	if ( error ) {
-		printf( "Image %s could not be bound as a texture! OpenGL error: %d\n", filepath, error );
+		printf( "Image %s could not be bound as a texture! OpenGL error: %d\n", filepath.c_str(), error );
 		return false;
 	}
 
@@ -103,6 +109,7 @@ GLint SpriteHelper::generateVertexArray( const GLfloat* frame ) {
 		// Texture coordinate attributes
 		glVertexAttribPointer( 1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof( GLfloat ), (GLvoid*)(3 * sizeof( GLfloat )) );
 		glEnableVertexAttribArray( 1 );
+
 	glBindVertexArray( NULL );
 
 	return VAO;

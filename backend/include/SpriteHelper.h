@@ -30,13 +30,13 @@ public:
 	int getWidth() const;
 	int getHeight() const;
 
+	void setActive();
 	void setFilepath( const std::string filepathIn );
 
 	// ========== loading ==========
 
 	bool load( const std::string filepathIn = "" );
 	GLint generateVertexArray( const GLfloat* frame );
-
 };
 
 #endif
