@@ -75,3 +75,36 @@ bool SpriteHelper::load( const std::string filepathIn ) {
 	return true;
 } // load
 
+GLint SpriteHelper::generateVertexArray( const GLfloat* frame ) {
+	GLuint indices[] = {
+		0, 1, 3,
+		1, 2, 3
+	};
+
+	GLuint EBO;
+	glGenBuffers( 1, &EBO );
+
+	GLuint VBO;
+	glGenBuffers( 1, &VBO );
+
+	GLuint VAO;
+	glGenVertexArrays( 1, &VAO );
+	glBindVertexArray( VAO );
+		glBindBuffer( GL_ARRAY_BUFFER, VBO );
+		glBufferData( GL_ARRAY_BUFFER, sizeof( frame ), frame, GL_STATIC_DRAW );
+
+		glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, EBO );
+		glBufferData( GL_ELEMENT_ARRAY_BUFFER, sizeof( indices ), indices, GL_STATIC_DRAW );
+
+		// Position attributes
+		glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof( GLfloat ), (GLvoid*)0 );
+		glEnableVertexAttribArray( 0 );
+
+		// Texture coordinate attributes
+		glVertexAttribPointer( 1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof( GLfloat ), (GLvoid*)(3 * sizeof( GLfloat )) );
+		glEnableVertexAttribArray( 1 );
+	glBindVertexArray( NULL );
+
+	return VAO;
+} // generateBuffers
+

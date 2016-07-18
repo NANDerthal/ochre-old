@@ -34,7 +34,8 @@ public:
 
 	// ========== loading ==========
 
-	bool load( const std::string filepathIn = " " );
+	bool load( const std::string filepathIn = "" );
+	GLint generateVertexArray( const GLfloat* frame );
 
 };
 
