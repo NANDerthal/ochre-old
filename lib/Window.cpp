@@ -91,6 +91,12 @@ int Window::getHeight() const {
 
 // ===== drawing functions =====
 
+void Window::swapBuffer() {
+	SDL_GL_SwapWindow( window );
+
+	return;
+} // swapBuffer
+
 // update to use set variables
 void Window::update() {
 	if ( updateMeta ) {
