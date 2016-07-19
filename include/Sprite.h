@@ -37,8 +37,6 @@ private:
 	int numAnimations;
 
 	std::vector < std::vector < GLint > > vertexArrays;
-	GLuint indices[];
-	GLuint EBO, VBO;
 
 	// ========== disabled functions ==========
 
