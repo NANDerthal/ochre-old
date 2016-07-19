@@ -53,6 +53,7 @@ public:
 	
 	// ===== drawing functions =====
 	// update to use set variables
+	void swapBuffer();
 	void update();
 
 };

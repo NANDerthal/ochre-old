@@ -17,9 +17,9 @@ Sprite::~Sprite() {
 } // ~Sprite
 
 void Sprite::generateVertices() {
-	int x, y, w, h;
-	w = frameWidth / helper->getWidth();
-	h = frameHeight / helper->getHeight();
+	GLfloat x, y, w, h;
+	w = (GLfloat)frameWidth / (GLfloat)helper->getWidth();
+	h = (GLfloat)frameHeight / (GLfloat)helper->getHeight();
 
 	for ( int i = 0; i < numAnimations; ++i ) {
 		std::vector < GLint > animRow( numFrames[i] );
@@ -27,17 +27,18 @@ void Sprite::generateVertices() {
 		for ( int j = 0; j < numFrames[i]; ++j ) {
 			x = j*w;
 			y = i*h;
+			
 			GLfloat frame[] = {
-				// frame xyz     texture coordinates
-				0, 0, 0,		x,		y+h,
-				1, 0, 0,		x+w,	y+h,
-				1, 1, 0, 		x+w, 	y,
-				0, 1, 0, 		x,		y
-		   	};
+				// frame xyz   		    texture coordinates
+				1.0f, 1.0f, 0.0f, 		x+w, 	y+h,
+				1.0f, 0.0f, 0.0f,		x+w,	y,
+				0.0f, 0.0f, 0.0f,		x,		y,
+				0.0f, 1.0f, 0.0f, 		x,		y+h
+			};
 
 			GLint VAO = helper->generateVertexArray( frame );
 
-			vertexArrays[i].push_back( VAO );
+			vertexArrays[i][j] = VAO;
 		}
 	}
 
@@ -61,7 +62,7 @@ bool Sprite::load( std::string filepath ) {
 
 	numAnimations = helper->getHeight() / frameHeight;
 
-	// TODO: Generate OpenGL Vertices
+	// Generate OpenGL Vertices
 	generateVertices();
 
 	return true;

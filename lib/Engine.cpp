@@ -41,15 +41,20 @@ bool Engine::init() {
 	// Initialize GLEW (load OpenGL functionality)
 	
 	glewExperimental = GL_TRUE;
+	
 	GLenum err = glewInit();
+	
+	// clear OpenGL error that results from GLEW initialization
+	GLenum errorClear = glGetError();
+	
 	if ( err != GLEW_OK ) {
 		printf( "GLEW failed to load! GLEW error: %s\n", glewGetErrorString( err ) );
-		return false; 
+		return false;
 	}
 	
 	// Initialize openGL
-	glEnable( GL_DEPTH_TEST );
 	glViewport( 0, 0, window->getWidth(), window->getHeight() );
+	glEnable( GL_DEPTH_TEST );
 
 	return true;
 } // init

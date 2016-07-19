@@ -33,6 +33,9 @@ bool ShaderProgram::buildShaderProgram( const std::string shaderName ) {
 		return false;
 	}
 	
+	glDeleteShader( vertex.getShaderID() );
+	glDeleteShader( fragment.getShaderID() );
+	
 	linked = true;
 	
 	return true;

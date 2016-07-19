@@ -93,7 +93,6 @@ int Window::getHeight() const {
 
 void Window::swapBuffer() {
 	SDL_GL_SwapWindow( window );
-
 	return;
 } // swapBuffer
 
