@@ -19,7 +19,7 @@ Shader::~Shader() {
 	return;
 } // ~Shader
 
-// ========== getters and setters ==========
+// ========== get and set member variables ==========
 
 GLuint Shader::getShaderID() {
 	if ( !compiled ) {

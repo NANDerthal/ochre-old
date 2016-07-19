@@ -25,9 +25,10 @@ public:
 	Shader( const std::string filepathIn = "", const GLenum shaderTypeIn = NULL );
 	~Shader();
 
-	// ========== getters and setters ==========
+	// ========== get and set member variables ==========
 	
 	// NOTE: compiles shader with createShader if not compiled yet
+	// Thus, it is not const.
 	GLuint getShaderID();
 	
 	void setFilepath( const std::string filepathIn );
