@@ -3,6 +3,9 @@
 
 #include "Engine.h"
 
+#include "Sprite.h"
+#include "ShaderProgram.h"
+
 /* 
  * NOTE: This is a derived class from the abstract base class Engine. Rename
  * or copy Game-template.* to Game.* to define your own Game class. This
@@ -20,11 +23,22 @@ class EngineTest : public Engine {
 private:
 	// Place any user-defined functions here
 
+	Sprite* sprite;
+	ShaderProgram* shaderProgram;
+
 public:
-	
+
+	// ========== constructors and destructors ==========
+
+	EngineTest();
+
+	~EngineTest();
+
+	// ========== public member functions ==========
+
 	// Main game loop function (user-defined)
 	void run() override;
-	
+
 	// Main test function (user-defined)
 	void runTest() override;
 
