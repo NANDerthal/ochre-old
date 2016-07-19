@@ -29,7 +29,7 @@ public:
 
 	int getWidth() const;
 	int getHeight() const;
-	int getTextureID() const;
+	GLuint getTextureID() const;
 
 	void setFilepath( const std::string filepathIn );
 
@@ -40,7 +40,7 @@ public:
 
 	// load image from file into OpenGL texture
 	bool load( const std::string filepathIn = "" );
-	
+
 	// set texture stored by current object to be the active OpenGL texture
 	void setActive() const;
 

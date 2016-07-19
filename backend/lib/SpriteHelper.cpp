@@ -18,7 +18,7 @@ SpriteHelper::SpriteHelper( const std::string filepathIn ) {
 
 SpriteHelper::~SpriteHelper() {
 	glDeleteTextures( 1, &textureID );
-	return; 
+	return;
 } // ~SpriteHelper
 
 // ========== get and set member variables ==========
@@ -31,7 +31,7 @@ int SpriteHelper::getHeight() const {
 	return textureHeight;
 } // getHeight
 
-int SpriteHelper::getTextureID() const {
+GLuint SpriteHelper::getTextureID() const {
 	return textureID;
 }
 
@@ -99,7 +99,7 @@ bool SpriteHelper::load( const std::string filepathIn ) {
 		}
 		loaded = false;
 	}
-	
+
 	if ( loaded ) {
 		return true;
 	}
