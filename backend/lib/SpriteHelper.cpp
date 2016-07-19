@@ -21,7 +21,7 @@ SpriteHelper::~SpriteHelper() {
 	return;
 } // ~SpriteHelper
 
-// ========== getters and setters ==========
+// ========== get and set member variables ==========
 
 int SpriteHelper::getWidth() const {
 	return textureWidth;
@@ -31,18 +31,59 @@ int SpriteHelper::getHeight() const {
 	return textureHeight;
 } // getHeight
 
-void SpriteHelper::setActive() {
-	glBindTexture( GL_TEXTURE_2D, textureID );
-	return;
-} // setActive
-
 void SpriteHelper::setFilepath( const std::string filepathIn ) {
 	filepath = filepathIn;
 	loaded = false;
 	return;
 } // setFilepath
 
-// ========== loading ==========
+// ========== library-dependent functions ==========
+
+GLint SpriteHelper::generateVertexArray( const GLfloat offsetX, const GLfloat offsetY,
+										 const GLfloat rectWidth, const GLfloat rectHeight ) {
+	GLfloat frame[] = {
+		// frame xyz   		    texture coordinates
+		1.0f, 1.0f, 0.0f, 		offsetX + rectWidth, 	offsetY + rectHeight,
+		1.0f, 0.0f, 0.0f,		offsetX + rectWidth,	offsetY,
+		0.0f, 0.0f, 0.0f,		offsetX,				offsetY,
+		0.0f, 1.0f, 0.0f, 		offsetX,				offsetY + rectHeight
+	};
+
+	GLuint indices[] = {
+		0, 1, 3,
+		1, 2, 3
+	};
+
+	// Vertex buffer object (hold frame vertices)
+	GLuint VBO;
+	glGenBuffers( 1, &VBO );
+
+	// Element buffer object (generate multiple triangles from given frame vertices)
+	GLuint EBO;
+	glGenBuffers( 1, &EBO );
+
+	// Vertex array object (put together info from VBO and EBO so shaders can render them)
+	GLuint VAO;
+	glGenVertexArrays( 1, &VAO );
+	glBindVertexArray( VAO );
+		glBindBuffer( GL_ARRAY_BUFFER, VBO );
+		glBufferData( GL_ARRAY_BUFFER, sizeof( frame ), frame, GL_STATIC_DRAW );
+
+		glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, EBO );
+		glBufferData( GL_ELEMENT_ARRAY_BUFFER, sizeof( indices ), indices, GL_STATIC_DRAW );
+
+		// Position attributes
+		glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof( GLfloat ), (GLvoid*)0 );
+		glEnableVertexAttribArray( 0 );
+
+		// Texture coordinate attributes
+		glVertexAttribPointer( 1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof( GLfloat ), (GLvoid*)(3 * sizeof( GLfloat )) );
+		glEnableVertexAttribArray( 1 );
+
+	glBindVertexArray( NULL );
+
+	return VAO;
+} // generateVertexArray
 
 bool SpriteHelper::load( const std::string filepathIn ) {
 	if ( loaded ) {
@@ -81,37 +122,8 @@ bool SpriteHelper::load( const std::string filepathIn ) {
 	return true;
 } // load
 
-GLint SpriteHelper::generateVertexArray( const GLfloat* frame ) {
-	GLuint indices[] = {
-		0, 1, 3,
-		1, 2, 3
-	};
-
-	GLuint EBO;
-	glGenBuffers( 1, &EBO );
-
-	GLuint VBO;
-	glGenBuffers( 1, &VBO );
-
-	GLuint VAO;
-	glGenVertexArrays( 1, &VAO );
-	glBindVertexArray( VAO );
-		glBindBuffer( GL_ARRAY_BUFFER, VBO );
-		glBufferData( GL_ARRAY_BUFFER, sizeof( frame ), frame, GL_STATIC_DRAW );
-
-		glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, EBO );
-		glBufferData( GL_ELEMENT_ARRAY_BUFFER, sizeof( indices ), indices, GL_STATIC_DRAW );
-
-		// Position attributes
-		glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof( GLfloat ), (GLvoid*)0 );
-		glEnableVertexAttribArray( 0 );
-
-		// Texture coordinate attributes
-		glVertexAttribPointer( 1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof( GLfloat ), (GLvoid*)(3 * sizeof( GLfloat )) );
-		glEnableVertexAttribArray( 1 );
-
-	glBindVertexArray( NULL );
-
-	return VAO;
-} // generateBuffers
+void SpriteHelper::setActive() const {
+	glBindTexture( GL_TEXTURE_2D, textureID );
+	return;
+} // setActive
 

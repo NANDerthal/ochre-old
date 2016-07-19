@@ -25,18 +25,24 @@ public:
 	SpriteHelper( const std::string filepathIn = "" );
 	~SpriteHelper();
 
-	// ========== getters and setters ==========
+	// ========== get and set member variables ==========
 
 	int getWidth() const;
 	int getHeight() const;
 
-	void setActive();
 	void setFilepath( const std::string filepathIn );
 
-	// ========== loading ==========
+	// ========== library-dependent functions ==========
 
+	GLint generateVertexArray( const GLfloat offsetX, const GLfloat offsetY,
+							   const GLfloat rectWidth, const GLfloat rectHeight );
+
+	// load image from file into OpenGL texture
 	bool load( const std::string filepathIn = "" );
-	GLint generateVertexArray( const GLfloat* frame );
+	
+	// set texture stored by current object to be the active OpenGL texture
+	void setActive() const;
+
 };
 
 #endif
