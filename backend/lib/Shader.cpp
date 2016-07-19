@@ -61,7 +61,7 @@ bool Shader::createShader( const std::string filepathIn, const GLenum shaderType
 	shaderFile.open( filepath.c_str() );
 	
 	if ( !shaderFile.is_open() ) {
-		printf( "Failed to open shader file %s!", filepath );
+		printf( "Failed to open shader file %s!", filepath.c_str() );
 		return false;
 	}
 	
