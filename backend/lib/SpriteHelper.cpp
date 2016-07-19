@@ -107,7 +107,7 @@ bool SpriteHelper::load( const std::string filepathIn ) {
 	// ===== Load sprite if not already loaded =====
 
 	// load image from file
-	unsigned char* image = SOIL_load_image( filepath.c_str(), &textureWidth, &textureHeight, 0, SOIL_LOAD_RGB );
+	unsigned char* image = SOIL_load_image( filepath.c_str(), &textureWidth, &textureHeight, 0, SOIL_LOAD_RGBA );
 	if ( image == NULL ) {
 		printf( "Image %s could not be loaded! SOIL error: %s\n", filepath.c_str(), SOIL_last_result() );
 		return false;
@@ -116,7 +116,7 @@ bool SpriteHelper::load( const std::string filepathIn ) {
 	// create OpenGL texture from image
 	glGenTextures( 1, &textureID );
 	glBindTexture( GL_TEXTURE_2D, textureID );
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image );
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image );
 	glGenerateMipmap( GL_TEXTURE_2D );
 	glBindTexture( GL_TEXTURE_2D, NULL );
 	GLenum error = glGetError();
