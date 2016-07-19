@@ -15,6 +15,7 @@ class ShaderProgram {
 private:
 	
 	GLuint shaderProgramID;
+	std::string shaderName;
 	bool linked;
 
 public:
@@ -22,10 +23,11 @@ public:
 	// ========== constructor ==========
 	
 	ShaderProgram();
+	ShaderProgram( const std::string &shaderNameIn );
 
 	// ========== API functions ==========
 
-	bool buildShaderProgram( const std::string shaderName );
+	bool buildShaderProgram( const std::string &shaderNameIn = "" );
 	void setActive();
 
 };
