@@ -14,7 +14,7 @@ EngineTest::~EngineTest() {
 
 	delete shaderProgram;
 	shaderProgram = nullptr;
-	
+
 	return;
 } // ~EngineTest
 
@@ -31,7 +31,7 @@ void EngineTest::run() {
 	sprite = new Sprite( smileSprite );
 
 	shaderProgram = new ShaderProgram( "sprite_shader" );
-	
+
 	if ( !sprite->load() ) {
 		printf( "Sprite loading failed! (From EngineTest) \n" );
 	}
@@ -47,15 +47,15 @@ void EngineTest::run() {
 				quit = true;
 			}
 		}
-		
+
 		// ===== render =====
 
 		// == set state ==
 		glClearColor( 0.2f, 0.3f, 0.3f, 1.0f );
-		
+
 		// == use state ==
-		glClear( GL_COLOR_BUFFER_BIT );
-		
+		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+
 		// == use shader program ==
 		shaderProgram->setActive();
 
