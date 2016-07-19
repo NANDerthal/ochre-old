@@ -29,6 +29,7 @@ public:
 
 	int getWidth() const;
 	int getHeight() const;
+	int getTextureID() const;
 
 	void setFilepath( const std::string filepathIn );
 

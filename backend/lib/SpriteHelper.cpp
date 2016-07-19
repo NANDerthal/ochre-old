@@ -31,6 +31,10 @@ int SpriteHelper::getHeight() const {
 	return textureHeight;
 } // getHeight
 
+int SpriteHelper::getTextureID() const {
+	return textureID;
+}
+
 void SpriteHelper::setFilepath( const std::string filepathIn ) {
 	filepath = filepathIn;
 	loaded = false;
