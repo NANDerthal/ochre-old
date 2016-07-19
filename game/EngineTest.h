@@ -15,7 +15,7 @@
  * and run with the -t or --test flag. Test suites should be defined here.
  */
 
-class Game : public Engine {
+class EngineTest : public Engine {
 
 private:
 	// Place any user-defined functions here
