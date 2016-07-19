@@ -2,7 +2,11 @@
 #include <cstdlib>
 #include <cstring>
 
-#include "Game.h"
+#ifdef DEBUG
+	#include "EngineTest.h"
+#else
+	#include "Game.h"
+#endif
 
 #ifdef main
 	#undef main
@@ -35,7 +39,12 @@ int main( int argc, char* argv[] ) {
 	
 	// Run game
 	
-	Engine* game = new Game;
+	#ifdef DEBUG
+		Engine* game = new EngineTest;
+		printf( "Compiled in engine debug mode\n" );
+	#else
+		Engine* game = new Game;
+	#endif
 	
 	if ( !game->init() ) {
 		printf("Error initializing game!\n");
