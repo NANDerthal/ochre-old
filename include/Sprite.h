@@ -4,6 +4,9 @@
 #include <string>
 #include <vector>
 
+#ifdef DEBUG
+	#include "Engine.h"
+#endif
 #include "SpriteHelper.h"
 
 // NOTE: All frames of a spritesheet must have the same dimensions!
@@ -20,6 +23,10 @@ struct SpriteData {
  */
 
 class Sprite {
+
+#ifdef DEBUG
+	friend class EngineTest;
+#endif
 
 private:
 
