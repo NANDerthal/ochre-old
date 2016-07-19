@@ -5,6 +5,11 @@
 
 #include "Shader.h"
 
+/*
+ * This class includes API-callable members.
+ * Therefore, public members must abstract away library-related details.
+ */
+
 class ShaderProgram {
 
 private:
