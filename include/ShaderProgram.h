@@ -3,6 +3,9 @@
 
 #include <string>
 
+#ifdef DEBUG
+	#include "Engine.h"
+#endif
 #include "Shader.h"
 
 /*
@@ -11,6 +14,10 @@
  */
 
 class ShaderProgram {
+
+#ifdef DEBUG
+	friend class EngineTest;
+#endif
 
 private:
 	
