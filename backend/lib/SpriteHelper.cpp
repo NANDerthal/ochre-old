@@ -18,7 +18,7 @@ SpriteHelper::SpriteHelper( const std::string filepathIn ) {
 
 SpriteHelper::~SpriteHelper() {
 	glDeleteTextures( 1, &textureID );
-	return;
+	return; 
 } // ~SpriteHelper
 
 // ========== get and set member variables ==========
@@ -49,7 +49,7 @@ GLint SpriteHelper::generateVertexArray( const GLfloat offsetX, const GLfloat of
 		0.0f, 1.0f, 0.0f, 		offsetX,				offsetY + rectHeight
 	};
 
-	GLuint indices[] = {
+	static const GLuint indices[] = {
 		0, 1, 3,
 		1, 2, 3
 	};
@@ -86,14 +86,21 @@ GLint SpriteHelper::generateVertexArray( const GLfloat offsetX, const GLfloat of
 } // generateVertexArray
 
 bool SpriteHelper::load( const std::string filepathIn ) {
-	if ( loaded ) {
-		glDeleteTextures( 1, &textureID );
+	// ===== Check if sprite was already loaded =====
+
+	if ( ( filepathIn != "" ) && ( filepathIn != filepath ) ) {
+		filepath = filepathIn;
+		if ( loaded ) {
+			glDeleteTextures( 1, &textureID );
+		}
 		loaded = false;
 	}
-
-	if ( filepathIn != "" ) {
-		filepath = filepathIn;
+	
+	if ( loaded ) {
+		return true;
 	}
+
+	// ===== Load sprite if not already loaded =====
 
 	// load image from file
 	unsigned char* image = SOIL_load_image( filepath.c_str(), &textureWidth, &textureHeight, 0, SOIL_LOAD_RGB );
