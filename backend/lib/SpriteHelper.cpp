@@ -47,10 +47,10 @@ GLint SpriteHelper::generateVertexArray( const GLfloat offsetX, const GLfloat of
 										 const GLfloat rectWidth, const GLfloat rectHeight ) {
 	GLfloat frame[] = {
 		// frame xyz   		    texture coordinates
-		1.0f, 1.0f, 0.0f, 		offsetX + rectWidth, 	offsetY + rectHeight,
-		1.0f, 0.0f, 0.0f,		offsetX + rectWidth,	offsetY,
-		0.0f, 0.0f, 0.0f,		offsetX,				offsetY,
-		0.0f, 1.0f, 0.0f, 		offsetX,				offsetY + rectHeight
+		1.0f, 1.0f, 0.0f, 		offsetX + rectWidth, 	offsetY,
+		1.0f, 0.0f, 0.0f,		offsetX + rectWidth,	offsetY + rectHeight,
+		0.0f, 0.0f, 0.0f,		offsetX,				offsetY + rectHeight,
+		0.0f, 1.0f, 0.0f, 		offsetX,				offsetY
 	};
 
 	static const GLuint indices[] = {

@@ -8,6 +8,6 @@ void main() {
 	gl_Position = vec4( position, 1.0f );
 
 	// TODO: write soft code to find texture origin
-	TexCoord = vec2( texCoord.x, 1.0f - texCoord.y );
+	TexCoord = texCoord; // vec2( texCoord.x, 1.0f - texCoord.y );
 }
 
