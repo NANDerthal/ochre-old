@@ -3,14 +3,15 @@
 // ========== constructors and destructors ==========
 
 EngineTest::EngineTest() {
-	sprite = nullptr;
 	shaderProgram = nullptr;
 	return;
 } // EngineTest
 
 EngineTest::~EngineTest() {
-	delete sprite;
-	sprite = nullptr;
+	for ( int i = 0; i < sprites.size(); ++i ) {
+		delete sprites[i];
+		sprites[i] = nullptr;
+	}
 
 	delete shaderProgram;
 	shaderProgram = nullptr;
@@ -22,30 +23,84 @@ EngineTest::~EngineTest() {
 // ========== public member functions ==========
 
 void EngineTest::run() {
+
+	enum SpriteSheets{ SMILE, UDLR };
+
 	SpriteData smileSprite = {
 		"img/smile.png",
 		512, 512,
 		{1}
 	};
+	
+	SpriteData udlrSprite = {
+		"img/udlr-sheet.png",
+		100, 100,
+		{ 1, 4 }
+	};
 
-	sprite = new Sprite( smileSprite );
+	sprites.push_back( new Sprite( smileSprite ) );
+	sprites.push_back( new Sprite( udlrSprite ) );
 
 	shaderProgram = new ShaderProgram( "sprite_shader" );
 
-	if ( !sprite->load() ) {
-		printf( "Sprite loading failed! (From EngineTest) \n" );
+	for ( int i = 0; i < sprites.size(); ++i ) {
+		if ( !sprites[i]->load() ) {
+			printf( "Sprite loading failed! (From EngineTest) \n" );
+		}
 	}
 
 	// ===== set loop flags =====
 	bool quit = false;
 	SDL_Event e;
+	
+	enum Press{ UP, RIGHT, DOWN, LEFT, NONE };
+	
+	Press press = NONE;
 
 	while ( !quit ) {
 		// ===== handle events =====
 		while ( SDL_PollEvent( &e ) != 0 ) {
 			if ( e.type == SDL_QUIT ) {
 				quit = true;
+			} else if ( e.type == SDL_KEYDOWN ) {
+				// select surfaces based on key press
+				switch ( e.key.keysym.sym ) {
+					
+					case SDLK_UP:
+					press = UP;
+					break;
+					
+					case SDLK_DOWN:
+					press = DOWN;
+					break;
+					
+					case SDLK_LEFT:
+					press = LEFT;
+					break;
+					
+					case SDLK_RIGHT:
+					press = RIGHT;
+					break;
+					
+					default:
+					press = NONE;
+					break;
+					
+				}
 			}
+		}
+		
+		const Uint8* keystate = SDL_GetKeyboardState( NULL );
+		
+		//continuous-response keys
+		if ( keystate[SDL_SCANCODE_UP] ) {
+			press = UP;
+		} else if ( keystate[SDL_SCANCODE_DOWN] ) {
+			press = DOWN;
+		} else if ( keystate[SDL_SCANCODE_LEFT] ) {
+			press = LEFT;
+		} else if ( keystate[SDL_SCANCODE_RIGHT] ) {
+			press = RIGHT;
 		}
 
 		// ===== render =====
@@ -59,13 +114,31 @@ void EngineTest::run() {
 		// == use shader program ==
 		shaderProgram->setActive();
 
+		// draw smile sprite
+		
 		glActiveTexture( GL_TEXTURE0 );
-		glBindTexture( GL_TEXTURE_2D, sprite->spriteHelper->getTextureID() );
+		glBindTexture( GL_TEXTURE_2D, sprites[SMILE]->spriteHelper->getTextureID() );
 		glUniform1i( glGetUniformLocation( shaderProgram->shaderProgramID, "ourTexture"), 0 );
 
-		glBindVertexArray( sprite->vertexArrays[0][0] );
+		glBindVertexArray( sprites[SMILE]->vertexArrays[0][0] );
 		glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0 );
 		glBindVertexArray( NULL );
+
+		// draw udlr sprite
+
+		glActiveTexture( GL_TEXTURE0 );
+		glBindTexture( GL_TEXTURE_2D, sprites[UDLR]->spriteHelper->getTextureID() );
+		glUniform1i( glGetUniformLocation( shaderProgram->shaderProgramID, "ourTexture"), 0 );
+
+		if ( press != NONE ) {
+			glBindVertexArray( sprites[UDLR]->vertexArrays[1][press] );
+			glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0 );
+			glBindVertexArray( NULL );
+		} else {
+			glBindVertexArray( sprites[UDLR]->vertexArrays[0][0] );
+			glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0 );
+			glBindVertexArray( NULL );
+		}
 
 		// == draw to screen ==
 		window->swapBuffer();

@@ -3,6 +3,8 @@
 
 #include "Engine.h"
 
+#include <vector>
+
 #include "Sprite.h"
 #include "ShaderProgram.h"
 
@@ -23,7 +25,7 @@ class EngineTest : public Engine {
 private:
 	// Place any user-defined functions here
 
-	Sprite* sprite;
+	std::vector < Sprite* > sprites;
 	ShaderProgram* shaderProgram;
 
 public:
