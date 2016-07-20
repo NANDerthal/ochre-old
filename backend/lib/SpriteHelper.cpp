@@ -86,6 +86,9 @@ GLint SpriteHelper::generateVertexArray( const GLfloat offsetX, const GLfloat of
 
 	glBindVertexArray( NULL );
 
+	glDeleteBuffers( 1, &EBO );
+	glDeleteBuffers( 1, &VBO );
+
 	return VAO;
 } // generateVertexArray
 
