@@ -35,7 +35,8 @@ public:
 
 	// ========== library-dependent functions ==========
 
-	GLint generateVertexArray( const GLfloat offsetX, const GLfloat offsetY,
+	GLint generateVertexArray( const GLint widthInPx, const GLint heightInPx,
+							   const GLfloat offsetX, const GLfloat offsetY,
 							   const GLfloat rectWidth, const GLfloat rectHeight );
 
 	// load image from file into OpenGL texture

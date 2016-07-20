@@ -43,14 +43,15 @@ void SpriteHelper::setFilepath( const std::string filepathIn ) {
 
 // ========== library-dependent functions ==========
 
-GLint SpriteHelper::generateVertexArray( const GLfloat offsetX, const GLfloat offsetY,
+GLint SpriteHelper::generateVertexArray( const GLint widthInPx, const GLint heightInPx,
+										 const GLfloat offsetX, const GLfloat offsetY,
 										 const GLfloat rectWidth, const GLfloat rectHeight ) {
 	GLfloat frame[] = {
-		// frame xyz   		    texture coordinates
-		1.0f, 1.0f, 0.0f, 		offsetX + rectWidth, 	offsetY,
-		1.0f, 0.0f, 0.0f,		offsetX + rectWidth,	offsetY + rectHeight,
-		0.0f, 0.0f, 0.0f,		offsetX,				offsetY + rectHeight,
-		0.0f, 1.0f, 0.0f, 		offsetX,				offsetY
+		// frame xyz   		    		texture coordinates
+		widthInPx,	heightInPx, 0, 		offsetX + rectWidth, 	offsetY,
+		widthInPx,	0,			0,		offsetX + rectWidth,	offsetY + rectHeight,
+		0.0f,		0,			0,		offsetX,				offsetY + rectHeight,
+		0.0f,		heightInPx,	0, 		offsetX,				offsetY
 	};
 
 	static const GLuint indices[] = {
