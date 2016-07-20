@@ -36,7 +36,7 @@ private:
 	int frameWidth, frameHeight;
 	int numAnimations;
 
-	std::vector < std::vector < GLint > > vertexArrays;
+	std::vector < std::vector < GLuint > > vertexArrays;
 
 	// ========== disabled functions ==========
 
