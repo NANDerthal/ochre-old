@@ -16,7 +16,7 @@ public:
 	// ========== constructors and destructors ==========
 	
 	Engine();
-	~Engine();
+	virtual ~Engine();
 	
 	// ========== functions for main.cpp ==========
 	// do not call these functions in your own code
