@@ -5,13 +5,19 @@
 ShaderProgram::ShaderProgram() {
 	linked = false;
 	return;
-} // ShaderProgram
+} // ShaderProgram()
 
 ShaderProgram::ShaderProgram( const std::string &shaderNameIn ) {
 	linked = false;
 	linked = buildShaderProgram( shaderNameIn );
 	return;
-}
+} // ShaderProgram( shaderNameIn )
+
+ShaderProgram::~ShaderProgram() {
+	setInactive()
+	glDeleteProgram( shaderProgramID );
+	return;
+} // ~ShaderProgram
 
 // ========== API functions ========== 
 
@@ -63,5 +69,11 @@ bool ShaderProgram::buildShaderProgram( const std::string &shaderNameIn ) {
 
 void ShaderProgram::setActive() {
 	glUseProgram( shaderProgramID );
+	return;
 } // setActive
+
+void ShaderProgram::setInactive() {
+	glUseProgram( NULL );
+	return;
+} // setInactive
 

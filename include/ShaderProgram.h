@@ -27,15 +27,18 @@ private:
 
 public:
 
-	// ========== constructor ==========
+	// ========== constructors and destructors ==========
 	
 	ShaderProgram();
 	ShaderProgram( const std::string &shaderNameIn );
+
+	~ShaderProgram();
 
 	// ========== API functions ==========
 
 	bool buildShaderProgram( const std::string &shaderNameIn = "" );
 	void setActive();
+	void setInactive();
 
 };
 
