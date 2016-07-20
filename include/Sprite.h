@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#ifdef DEBUG
+#ifdef ENGINE_DEBUG
 	#include "Engine.h"
 #endif
 #include "SpriteHelper.h"
@@ -24,7 +24,7 @@ struct SpriteData {
 
 class Sprite {
 
-#ifdef DEBUG
+#ifdef ENGINE_DEBUG
 	friend class EngineTest;
 #endif
 

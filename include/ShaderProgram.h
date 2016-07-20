@@ -3,7 +3,7 @@
 
 #include <string>
 
-#ifdef DEBUG
+#ifdef ENGINE_DEBUG
 	#include "Engine.h"
 #endif
 #include "Shader.h"
@@ -15,7 +15,7 @@
 
 class ShaderProgram {
 
-#ifdef DEBUG
+#ifdef ENGINE_DEBUG
 	friend class EngineTest;
 #endif
 

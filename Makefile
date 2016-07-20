@@ -26,6 +26,8 @@ MAIN_OBJECTS = test.o
 COMPILER_FLAGS = -std=c++11 -w #-Wall -Werror -Wextra -pedantic
 RELEASE_FLAGS = -O3 -DNDEBUG
 DEBUG_FLAGS = --debug -DDEBUG
+ENGINE_DEBUG_FLAGS = $(DEBUG_FLAGS)
+ENGINE_DEBUG_FLAGS += -DENGINE_DEBUG
 
 # ========== UBUNTU ==========
 
@@ -38,6 +40,10 @@ game-release: $(EXECUTABLE_MAIN)
 game-debug: COMPILER_FLAGS += $(DEBUG_FLAGS)
 game-debug: MAIN_OBJECTS = main.o
 game-debug: $(EXECUTABLE_MAIN)
+
+engine-debug: COMPILER_FLAGS += $(ENGINE_DEBUG_FLAGS)
+engine-debug: MAIN_OBJECTS = main.o
+engine-debug: $(EXECUTABLE_MAIN)
 
 main-leak:
 	valgrind --leak-check=full --track-origins=yes --leak-resolution=high --show-reachable=yes ./$(EXECUTABLE_MAIN)

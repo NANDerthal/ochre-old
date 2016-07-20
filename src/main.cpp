@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <cstring>
 
-#ifdef DEBUG
+#ifdef ENGINE_DEBUG
 	#include "EngineTest.h"
 #else
 	#include "Game.h"
@@ -39,7 +39,7 @@ int main( int argc, char* argv[] ) {
 	
 	// Run game
 	
-	#ifdef DEBUG
+	#ifdef ENGINE_DEBUG
 		Engine* game = new EngineTest;
 		printf( "Compiled in engine debug mode\n" );
 	#else
