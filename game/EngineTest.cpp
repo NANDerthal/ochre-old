@@ -24,7 +24,7 @@ EngineTest::~EngineTest() {
 
 void EngineTest::run() {
 
-	enum SpriteSheets{ SMILE, UDLR };
+	enum SpriteSheets{ SMILE, UDLR, NUMSHEETS };
 
 	SpriteData smileSprite = {
 		"img/smile.png",
@@ -37,6 +37,8 @@ void EngineTest::run() {
 		100, 100,
 		{ 1, 4 }
 	};
+
+	sprites.reserve( NUMSHEETS );
 
 	sprites.push_back( new Sprite( smileSprite ) );
 	sprites.push_back( new Sprite( udlrSprite ) );
@@ -144,10 +146,13 @@ void EngineTest::run() {
 		window->swapBuffer();
 	}
 
+	shaderProgram->setInactive();
+
 	return;
 } // run
 
 void EngineTest::runTest() {
 	delay( 2000 );
+	return;
 }// runTest
 
