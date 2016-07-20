@@ -42,6 +42,11 @@ private:
 
 	Sprite() = delete;
 
+	// Sprites should not be copied (for efficiency purposes)
+	// (This is because the same sprite can be drawn multiple times in multiple locations)
+	Sprite( const Sprite& src ) = delete;
+	Sprite& operator=( const Sprite& src ) = delete;
+
 	// ========== private member functions ==========
 
 	// create a vetex array object for each animation frame in the spritesheet
@@ -60,7 +65,7 @@ public:
 	// ========== API functions ==========
 
 	// Load spritesheet and call generateVertices to prepare frames for rendering
-	bool load( std::string filepath = "" );
+	bool load( const std::string &filepath = "" );
 
 };
 
