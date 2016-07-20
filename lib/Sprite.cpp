@@ -38,7 +38,7 @@ void Sprite::generateVertices() {
 			x = j*w;
 			y = i*h;
 
-			GLint VAO = spriteHelper->generateVertexArray( x, y, w, h );
+			GLint VAO = spriteHelper->generateVertexArray( frameWidth, frameHeight, x, y, w, h );
 
 			vertexArrays[i][j] = VAO;
 		}
