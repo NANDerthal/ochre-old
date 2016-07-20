@@ -25,7 +25,7 @@ GLuint Shader::getShaderID() {
 	if ( !compiled ) {
 		compiled = createShader();
 		if ( !compiled ) {
-			exit(1);
+			printf( "Error compiling shader!" );
 		}
 	}
 	
