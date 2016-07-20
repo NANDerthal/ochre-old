@@ -47,6 +47,11 @@ private:
 	Sprite( const Sprite& src ) = delete;
 	Sprite& operator=( const Sprite& src ) = delete;
 
+	// move constructors
+	// again, deleted for efficiency purposes
+	Sprite( Sprite&& src ) = delete;
+	Sprite& operator=( const Sprite&& src ) = delete;
+
 	// ========== private member functions ==========
 
 	// create a vetex array object for each animation frame in the spritesheet
