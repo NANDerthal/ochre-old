@@ -1,5 +1,10 @@
 #include "EngineTest.h"
 
+#include <glm/fwd.hpp>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 // ========== constructors and destructors ==========
 
 EngineTest::EngineTest() {
@@ -23,6 +28,28 @@ EngineTest::~EngineTest() {
 // ========== public member functions ==========
 
 void EngineTest::run() {
+	// ===== set up transformation matrices =====
+
+	GLfloat normalize[] = {
+		1.0f / (GLfloat)window->getWidth(),	0,										0,	0,
+		0,									1.0f / (GLfloat)window->getHeight(),	0,	0,
+		0,									0,										1,	0,
+		0,									0,										0,	1
+	};
+	
+	glm::mat4 normalizeMatrix = glm::make_mat4( normalize );
+
+	GLfloat translateOrigin[] = {
+		2,	0,	0,	-1,
+		0,	2,	0,	-1,
+		0,	0,	2,	0,
+		0,	0,	0,	1
+	};
+	
+	glm::mat4 translateOriginMatrix = glm::make_mat4( translateOrigin );
+	translateOriginMatrix = glm::transpose( translateOriginMatrix );
+
+	// ===== Load sprites =====
 
 	enum SpriteSheets{ SMILE, UDLR, NUMSHEETS };
 
@@ -43,13 +70,15 @@ void EngineTest::run() {
 	sprites.push_back( new Sprite( smileSprite ) );
 	sprites.push_back( new Sprite( udlrSprite ) );
 
-	shaderProgram = new ShaderProgram( "sprite_shader" );
-
 	for ( int i = 0; i < sprites.size(); ++i ) {
 		if ( !sprites[i]->load() ) {
 			printf( "Sprite loading failed! (From EngineTest) \n" );
 		}
 	}
+
+	// ===== set up shader program =====
+
+	shaderProgram = new ShaderProgram( "sprite_shader" );
 
 	// ===== set loop flags =====
 	bool quit = false;
@@ -116,8 +145,16 @@ void EngineTest::run() {
 		// == use shader program ==
 		shaderProgram->setActive();
 
+		// set transformations
+
+		GLuint normalizeLoc = glGetUniformLocation( shaderProgram->shaderProgramID, "normalize" );
+		glUniformMatrix4fv( normalizeLoc, 1, GL_FALSE, glm::value_ptr( normalizeMatrix ) );
+
+		GLuint translateOriginLoc = glGetUniformLocation( shaderProgram->shaderProgramID, "translateOrigin" );
+		glUniformMatrix4fv( translateOriginLoc, 1, GL_FALSE, glm::value_ptr( translateOriginMatrix ) );
+
 		// draw smile sprite
-		
+/*
 		glActiveTexture( GL_TEXTURE0 );
 		glBindTexture( GL_TEXTURE_2D, sprites[SMILE]->spriteHelper->getTextureID() );
 		glUniform1i( glGetUniformLocation( shaderProgram->shaderProgramID, "ourTexture"), 0 );
@@ -125,7 +162,7 @@ void EngineTest::run() {
 		glBindVertexArray( sprites[SMILE]->vertexArrays[0][0] );
 		glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0 );
 		glBindVertexArray( NULL );
-
+*/
 		// draw udlr sprite
 
 		glActiveTexture( GL_TEXTURE0 );
