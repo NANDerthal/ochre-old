@@ -49,7 +49,7 @@ void Sprite::generateVertices() {
 
 // ========== API functions ==========
 
-bool Sprite::load( std::string filepath ) {
+bool Sprite::load( const std::string &filepath ) {
 	if ( filepath != "" ) {
 		spriteHelper->setFilepath( filepath );
 	}
