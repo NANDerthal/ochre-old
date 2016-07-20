@@ -14,7 +14,7 @@ ShaderProgram::ShaderProgram( const std::string &shaderNameIn ) {
 } // ShaderProgram( shaderNameIn )
 
 ShaderProgram::~ShaderProgram() {
-	setInactive()
+	setInactive();
 	glDeleteProgram( shaderProgramID );
 	return;
 } // ~ShaderProgram
