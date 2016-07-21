@@ -44,5 +44,5 @@ We appreciate any and all efforts to help improve ochre. However, currently, we 
 
 ## License
 
-Currently, since the core of ochre is incomplete, there is no official license. Once we have a working core, we intend to use the MIT license so long as all dependencies are compatible.
+ochre is licensed under the [MIT license](https://opensource.org/licenses/MIT). This means you can use it for free, commercially or non-commercially, open or closed source. See the [LICENSE](https://github.com/NANDerthal/ochre/blob/master/LICENSE) file for license rights and limitations.
 
