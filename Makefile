@@ -79,13 +79,19 @@ clean :
 # ========== OBJECTS ==========
 
 # user-facing
-Window.o: include/Window.h
 Engine.o: include/Engine.h
+Level.o: include/Level.h
+Renderer.o: include/Renderer.h
+Sprite.o: include/Sprite.h
+Window.o: include/Window.h
+
 Game.o: game/Game.h
 
 # backend
+Camera.o: backend/include/Camera.h
 Shader.o: backend/include/Shader.h
 ShaderProgram.o: backend/include/ShaderProgram.h
+SpriteHelper.o: backend/include/SpriteHelper.h
 
 main.o: $(OBJECTS) $(MAIN)
 
