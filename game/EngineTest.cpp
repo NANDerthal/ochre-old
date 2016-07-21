@@ -49,6 +49,18 @@ void EngineTest::run() {
 	glm::mat4 translateOriginMatrix = glm::make_mat4( translateOrigin );
 	translateOriginMatrix = glm::transpose( translateOriginMatrix );
 
+	GLfloat translateZSmile[] = {
+		1,	0,	0,	0,
+		0,	1,	0,	0,
+		0,	0,	1,	0.9,
+		0,	0,	0,	1
+	};
+
+	glm::mat4 translateZSmileMatrix = glm::make_mat4( translateZSmile );
+	translateZSmileMatrix = glm::transpose( translateZSmileMatrix );
+
+	glm::mat4 translateZUdlrMatrix( 1.0f );
+
 	// ===== Load sprites =====
 
 	enum SpriteSheets{ SMILE, UDLR, NUMSHEETS };
@@ -154,7 +166,10 @@ void EngineTest::run() {
 		glUniformMatrix4fv( translateOriginLoc, 1, GL_FALSE, glm::value_ptr( translateOriginMatrix ) );
 
 		// draw smile sprite
-/*
+
+		GLuint translateZLoc = glGetUniformLocation( shaderProgram->shaderProgramID, "translateZ" );
+		glUniformMatrix4fv( translateZLoc, 1, GL_FALSE, glm::value_ptr( translateZSmileMatrix ) );
+
 		glActiveTexture( GL_TEXTURE0 );
 		glBindTexture( GL_TEXTURE_2D, sprites[SMILE]->spriteHelper->getTextureID() );
 		glUniform1i( glGetUniformLocation( shaderProgram->shaderProgramID, "ourTexture"), 0 );
@@ -162,8 +177,11 @@ void EngineTest::run() {
 		glBindVertexArray( sprites[SMILE]->vertexArrays[0][0] );
 		glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0 );
 		glBindVertexArray( NULL );
-*/
+
 		// draw udlr sprite
+
+		//GLuint translateZLoc = glGetUniformLocation( shaderProgram->shaderProgramID, "translateZ" );
+		glUniformMatrix4fv( translateZLoc, 1, GL_FALSE, glm::value_ptr( translateZUdlrMatrix ) );
 
 		glActiveTexture( GL_TEXTURE0 );
 		glBindTexture( GL_TEXTURE_2D, sprites[UDLR]->spriteHelper->getTextureID() );
