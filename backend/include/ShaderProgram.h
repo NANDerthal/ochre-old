@@ -34,11 +34,22 @@ public:
 
 	~ShaderProgram();
 
-	// ========== API functions ==========
+	// ========== library-dependent functions ==========
 
 	bool buildShaderProgram( const std::string &shaderNameIn = "" );
-	void setActive();
-	void setInactive();
+
+	// ===== OpenGL state setting =====
+	void setActive() const;
+	void setInactive() const;
+
+	// ===== Program variable setting =====
+
+	// set textures to render
+	void setUniform( const GLuint textureID ) const;
+
+	// set transformation matrices
+	void setUniform( const GLfloat* matrixPtr ) const;
+	
 
 };
 

@@ -19,7 +19,7 @@ ShaderProgram::~ShaderProgram() {
 	return;
 } // ~ShaderProgram
 
-// ========== API functions ========== 
+// ========== library-dependent functions ========== 
 
 bool ShaderProgram::buildShaderProgram( const std::string &shaderNameIn ) {
 
@@ -67,13 +67,34 @@ bool ShaderProgram::buildShaderProgram( const std::string &shaderNameIn ) {
 	return true;
 } // buildShaderProgramID
 
-void ShaderProgram::setActive() {
+// ===== OpenGL state setting =====
+
+void ShaderProgram::setActive() const {
 	glUseProgram( shaderProgramID );
 	return;
 } // setActive
 
-void ShaderProgram::setInactive() {
+void ShaderProgram::setInactive() const {
 	glUseProgram( NULL );
 	return;
 } // setInactive
+
+// ===== Program variable setting =====
+
+void ShaderProgram::setUniform( const GLuint textureID ) const {
+	glActiveTexture( GL_TEXTURE0 );
+	glBindTexture( GL_TEXTURE_2D, textureID );
+
+	GLuint textureLocation = glGetUniformLocation(shaderProgramID, "ourTexture" );
+	glUniform1i( textureLocation, 0 );
+
+	return;
+} // setUniform( textureID )
+
+void ShaderProgram::setUniform( const GLfloat* matrixPtr ) const {
+	GLuint transformationsLoc = glGetUniformLocation( shaderProgramID, "transformations" );
+	glUniformMatrix4fv( transformationsLoc, 1, GL_FALSE, matrixPtr );
+
+	return;
+} // setUniform( matrixPtr )
 
