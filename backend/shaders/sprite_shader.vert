@@ -4,12 +4,10 @@ layout (location = 1) in vec2 texCoord;
 
 out vec2 TexCoord;
 
-uniform mat4 normalize;
-uniform mat4 translateOrigin;
-uniform mat4 translateZ;
+uniform mat4 transformations;
 
 void main() {
-	gl_Position = translateZ * translateOrigin * normalize * vec4( position, 1.0f );
+	gl_Position = transformations * vec4( position, 1.0f );
 
 	// TODO: write soft code to find texture origin
 	TexCoord = texCoord; // vec2( texCoord.x, 1.0f - texCoord.y );
