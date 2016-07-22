@@ -3,9 +3,6 @@
 
 #include <string>
 
-#ifdef ENGINE_DEBUG
-	#include "Engine.h"
-#endif
 #include "Shader.h"
 
 /*
@@ -49,7 +46,8 @@ public:
 
 	// set transformation matrices
 	void setUniform( const GLfloat* matrixPtr ) const;
-	
+
+	void drawVertexArray( const GLuint vertexArray ) const;
 
 };
 

@@ -99,3 +99,10 @@ void ShaderProgram::setUniform( const GLfloat* matrixPtr ) const {
 	return;
 } // setUniform( matrixPtr )
 
+void ShaderProgram::drawVertexArray( const GLuint vertexArray ) const {
+	glBindVertexArray( vertexArray );
+	glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0 );
+	glBindVertexArray( 0 );
+	return;
+} // bindVertexArray
+
