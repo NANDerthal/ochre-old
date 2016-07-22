@@ -3,11 +3,6 @@
 
 #include "Engine.h"
 
-#include <vector>
-
-#include "Sprite.h"
-#include "ShaderProgram.h"
-
 /* 
  * NOTE: This is a derived class from the abstract base class Engine. Rename
  * or copy Game-template.* to Game.* to define your own Game class. This
@@ -24,9 +19,6 @@ class EngineTest : public Engine {
 
 private:
 	// Place any user-defined functions here
-
-	std::vector < Sprite* > sprites;
-	ShaderProgram* shaderProgram;
 
 public:
 
