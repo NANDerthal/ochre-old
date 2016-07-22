@@ -3,6 +3,7 @@
 
 #include <glm/fwd.hpp>
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 struct GameObjectAnimation {
 	unsigned int animation;
@@ -16,12 +17,13 @@ class GameObject {
 
 private:
 
-	glm::vec3 worldLocation, velocity;
+	glm::mat4 transformationMatrix;
+	glm::vec3 worldLocation, rotationAxis, velocity;
 	glm::vec2 worldSize;
 	float rotationAngle; // degrees
 	GameObjectAnimation animationData;
 	unsigned int spriteID; // sprite and collider ID (from Level)
-	bool collidable, movable;
+	bool collidable, movable, matrixValid;
 
 public:
 
@@ -34,9 +36,12 @@ public:
 
 	// ===== get =====
 
+	bool getMatrixValid() const;
+	const float* getTransformationMatrix() const;
 	glm::vec3 getWorldLocation() const;
-	glm::vec3 getVelocity() const;
 	glm::vec2 getWorldSize() const;
+	float getRotationAngle() const;
+	glm::vec3 getRotationAxis() const;
 
 	unsigned int getAnimation() const;
 	unsigned int getFrame() const;
@@ -46,12 +51,15 @@ public:
 
 	bool getCollidable() const;
 	bool getMovable() const;
+	glm::vec3 getVelocity() const;
 
 	// ===== set =====
 
+	void setTransformationMatrix( const glm::mat4 &transformationMatrixIn );
 	void setWorldLocation( const glm::vec3 &worldLocationIn );
-	void setVelocity( const glm::vec3 &velocityIn );
 	void setWorldSize( const glm::vec2 &worldSizeIn );
+	void setRotationAngle( const float rotationAngleIn );
+	void setRotationAxis( const glm::vec3 &rotationAxisIn );
 
 	void setAnimation( const unsigned int animationIn );
 	void setFrame( const unsigned int frameIn );
@@ -61,6 +69,7 @@ public:
 
 	void setCollidable( const bool collidableIn );
 	void setMovable( const bool movableIn );
+	void setVelocity( const glm::vec3 &velocityIn );
 
 };
 

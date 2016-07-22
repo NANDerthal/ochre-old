@@ -3,6 +3,7 @@
 // ========== constructors and destructors ==========
 
 GameObject::GameObject() {
+	matrixValid = false;
 	return;
 } // GameObject
 
@@ -14,17 +15,29 @@ GameObject::~GameObject() {
 
 // ===== get =====
 
+const float* GameObject::getTransformationMatrix() const {
+	return glm::value_ptr( transformationMatrix );
+} // getTransformationMatrix
+
+bool GameObject::getMatrixValid() const {
+	return matrixValid;
+} // getMatrixValid
+
 glm::vec3 GameObject::getWorldLocation() const {
 	return worldLocation;
 } // getWorldLocation
 
-glm::vec3 GameObject::getVelocity() const {
-	return velocity;
-} // getVelocity
-
 glm::vec2 GameObject::getWorldSize() const {
 	return worldSize;
 } // getWorldSize
+
+float GameObject::getRotationAngle() const {
+	return rotationAngle;
+} // getRotationAngle
+
+glm::vec3 GameObject::getRotationAxis() const {
+	return rotationAxis;
+} // getRotationAxis
 
 
 // ANIMATION INFO
@@ -59,22 +72,41 @@ bool GameObject::getMovable() const {
 	return movable;
 } // getMovable
 
+glm::vec3 GameObject::getVelocity() const {
+	return velocity;
+} // getVelocity
+
 // ===== set =====
+
+void GameObject::setTransformationMatrix( const glm::mat4 &transformationMatrixIn ) {
+	transformationMatrix = transformationMatrixIn;
+	matrixValid = true;
+	return;
+} // setTransformationMatrix
 
 void GameObject::setWorldLocation( const glm::vec3 &worldLocationIn ) {
 	worldLocation = worldLocationIn;
+	matrixValid = false;
 	return;
 } // setWorldLocation
 
-void GameObject::setVelocity( const glm::vec3 &velocityIn ) {
-	velocity = velocityIn;
-	return;
-} // setVelocity
-
 void GameObject::setWorldSize( const glm::vec2 &worldSizeIn ) {
 	worldSize = worldSizeIn;
+	matrixValid = false;
 	return;
 } // setWorldSize
+
+void GameObject::setRotationAngle( const float rotationAngleIn ) {
+	rotationAngle = rotationAngleIn;
+	matrixValid = false;
+	return;
+} // setRotationAngle
+
+void GameObject::setRotationAxis( const glm::vec3 &rotationAxisIn ) {
+	rotationAxis = rotationAxisIn;
+	matrixValid = false;
+	return;
+} // setRotationAxis
 
 
 // ANIMATION INFO
@@ -99,6 +131,7 @@ void GameObject::setFrameTime( const double frameTimeIn ) {
 
 void GameObject::setSpriteID( const int spriteIDIn ) {
 	spriteID = spriteIDIn;
+	matrixValid = false;
 	return;
 } // setSpriteID
 
@@ -114,4 +147,9 @@ void GameObject::setMovable( const bool movableIn ) {
 	movable = movableIn;
 	return;
 } // setMovable
+
+void GameObject::setVelocity( const glm::vec3 &velocityIn ) {
+	velocity = velocityIn;
+	return;
+} // setVelocity
 
