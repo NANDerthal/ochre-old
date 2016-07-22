@@ -79,7 +79,9 @@ clean :
 # ========== OBJECTS ==========
 
 # user-facing
+Collider.o: include/Collider.h
 Engine.o: include/Engine.h
+GameObject.o: include/GameObject.h
 Level.o: include/Level.h
 Renderer.o: include/Renderer.h
 Sprite.o: include/Sprite.h
