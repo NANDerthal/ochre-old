@@ -4,6 +4,7 @@
 
 Renderer::Renderer( int windowWidth, int windowHeight ) {
 	camera = new Camera;
+	shaderProgram = new ShaderProgram( "sprite_shader" );
 
 	// Convert pixel-perfect coordinates to normalized device coordinates
 	// Normalized device coordinates are in the range [-1, 1], but combined
@@ -37,37 +38,66 @@ Renderer::Renderer( int windowWidth, int windowHeight ) {
 } // Renderer
 
 Renderer::~Renderer() {
+	delete camera;
+	camera = nullptr;
+
+	delete shaderProgram;
+	shaderProgram = nullptr;
+
 	return;
 }// ~Renderer
 
 // ========== private member functions ==========
 
-glm::mat4 Renderer::combineTransformations( const glm::vec3 &worldPosition,
+glm::mat4 Renderer::combineTransformations( const glm::vec3 &worldLocation,
 											const float angle, const glm::vec3 &axis,
-											const glm::vec2 &objectSize,
+											const glm::vec2 &spriteSize,
 											const glm::vec2 &outputSize ) const {
 	// create matrix to scale object to outputSize
 	glm::mat4 scale;
-	GLfloat scaleX = (GLfloat)outputSize.x / (GLfloat)objectSize.x;
-	GLfloat scaleY = (GLfloat)outputSize.y / (GLfloat)objectSize.y;
+	GLfloat scaleX = (GLfloat)outputSize.x / (GLfloat)spriteSize.x;
+	GLfloat scaleY = (GLfloat)outputSize.y / (GLfloat)spriteSize.y;
 	scale = glm::scale( scale, glm::vec3( scaleX, scaleY, 1 ) );
 
 	// create matrix to rotate object about its own coordinate system
 	glm::mat4 rotate;
 	// make it so that rotation is about the center (rather than the corner) of the object
-	rotate = glm::translate( rotate, glm::vec3( -0.5 * objectSize.x, -0.5 * objectSize.y, 0 ) );
+	rotate = glm::translate( rotate, glm::vec3( -0.5 * outputSize.x, -0.5 * outputSize.y, 0 ) );
 	rotate = glm::rotate( rotate, glm::radians( angle ), axis );
 
 	// create matrix to place object in world
 	glm::mat4 transformWorldCoords;
 	// make it so that positioning is based on the bottom center of the object
 	// recall that the current origin of the object is at the center
-	transformWorldCoords = glm::translate( transformWorldCoords, glm::vec3( 0, 0.5 * objectSize.y, 0 ) );
-	transformWorldCoords = glm::translate( transformWorldCoords, worldPosition );
+	transformWorldCoords = glm::translate( transformWorldCoords, glm::vec3( 0, 0.5 * outputSize.y, 0 ) );
+	transformWorldCoords = glm::translate( transformWorldCoords, worldLocation );
 
 	// combine all transformations to single matrix
 	return transformPerspective * camera->getMatrix() *
 		   translateOrigin * normalize *
 		   transformWorldCoords * rotate * scale;
 } // combineTransformations( worldPosition, angle, axis )
+
+// ========== API functions ==========
+
+void Renderer::renderObject( GameObject* object, const Sprite* sprite ) {
+	if ( !object->getMatrixValid() ) {
+		glm::mat4 transformation = combineTransformations(
+			object->getWorldLocation(),
+			object->getRotationAngle(), object->getRotationAxis(),
+			glm::vec2( sprite->getFrameWidth(), sprite->getFrameHeight() ),
+			object->getWorldSize()
+		);
+		object->setTransformationMatrix( transformation );
+	}
+
+	shaderProgram->setActive();
+	shaderProgram->setUniform( object->getTransformationMatrix() );
+	shaderProgram->setUniform( sprite->getTextureID() );
+
+	GLuint frameID = sprite->getFrameID( object->getAnimation(), object->getFrame() );
+	shaderProgram->drawVertexArray( frameID );
+
+	return;
+} // renderObject
 
