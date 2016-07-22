@@ -1,6 +1,9 @@
 #include "Collider.h"
 
-Collider::Collider() {
+// ========== constructors and destructors ==========
+
+Collider::Collider( const ColliderData& colliderData ) {
+	filepath = colliderData.filepath;
 	return;
 } // Collider
 
