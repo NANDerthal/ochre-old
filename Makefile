@@ -23,9 +23,9 @@ SOURCES := $(filter-out $(EXCLUDE), $(SOURCES))
 OBJECTS = $(SOURCES:src/%.cpp=%.o)
 MAIN_OBJECTS = test.o
 
-COMPILER_FLAGS = -std=c++11 -w #-Wall -Werror -Wextra -pedantic
-RELEASE_FLAGS = -O3 -DNDEBUG
-DEBUG_FLAGS = --debug -DDEBUG
+COMPILER_FLAGS = -std=c++11
+RELEASE_FLAGS = -w -O3 -DNDEBUG
+DEBUG_FLAGS = --debug -DDEBUG -Wall -Werror -Wextra -pedantic
 ENGINE_DEBUG_FLAGS = $(DEBUG_FLAGS)
 ENGINE_DEBUG_FLAGS += -DENGINE_DEBUG
 
