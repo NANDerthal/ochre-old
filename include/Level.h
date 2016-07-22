@@ -3,18 +3,50 @@
 
 #include <vector>
 
+#include "Collider.h"
+#include "GameObject.h"
 #include "Sprite.h"
+
+struct SpriteCollider {
+	SpriteData spriteData;
+	ColliderData colliderData;
+};
 
 class Level {
 
 private:
 
-	std::vector < Sprite* > bgSprites;
+	// Sprites and colliders are associated by ID (index in vector), "spriteID"
+	std::vector < Sprite* > sprites;
+	std::vector < Collider* > colliders;
+
+	// Game objects will be accessed by their ID (index in vector), "objectID",
+	// that is NOT related to the spriteIDs
+	std::vector < GameObject* > gameObjects;
 
 public:
 
+	// ========== constructors and destructors ==========
+
 	Level();
 	~Level();
+
+	// ========== get and set member variables ==========
+
+	// ===== get =====
+
+	unsigned int getNumObjects() const;
+
+	GameObject const * getObject( unsigned int objectID ) const;
+	Sprite const * getSprite( unsigned int spriteID ) const;
+	Collider const * getCollider( unsigned int spriteID ) const;
+
+	// ===== set =====
+
+	void pushSpriteCollider( const SpriteCollider &spriteCollider );
+	void pushSprite( const SpriteData &spriteData );
+	void pushCollider( const ColliderData &colliderData );
+	void pushGameObject();
 
 };
 
