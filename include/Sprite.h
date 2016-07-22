@@ -4,9 +4,6 @@
 #include <string>
 #include <vector>
 
-#ifdef ENGINE_DEBUG
-	#include "Engine.h"
-#endif
 #include "SpriteHelper.h"
 
 // NOTE: All frames of a spritesheet must have the same dimensions!
@@ -66,6 +63,11 @@ public:
 
 	// ========== get and set member variables ==========
 
+	// TODO: other getting/setting functions
+	unsigned int getFrameWidth() const;
+	unsigned int getFrameHeight() const;
+	GLuint getTextureID() const;
+	GLuint getFrameID( const int animation, const int frame ) const;
 
 	// ========== API functions ==========
 

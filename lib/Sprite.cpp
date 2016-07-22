@@ -47,6 +47,24 @@ void Sprite::generateVertices() {
 	return;
 } // generateVertices
 
+// ========== get and set member variables ==========
+
+unsigned int Sprite::getFrameWidth() const {
+	return frameWidth;
+} // getFrameWidth
+
+unsigned int Sprite::getFrameHeight() const {
+	return frameHeight;
+} // getFrameHeight
+
+GLuint Sprite::getTextureID() const {
+	return spriteHelper->getTextureID();
+} // getTextureID
+
+GLuint Sprite::getFrameID( const int animation, const int frame ) const {
+	return vertexArrays[ animation ][ frame ];
+} // getFrameID
+
 // ========== API functions ==========
 
 bool Sprite::load( const std::string &filepath ) {
