@@ -13,7 +13,7 @@ EngineTest::EngineTest() {
 } // EngineTest
 
 EngineTest::~EngineTest() {
-	for ( int i = 0; i < sprites.size(); ++i ) {
+	for ( unsigned int i = 0; i < sprites.size(); ++i ) {
 		delete sprites[i];
 		sprites[i] = nullptr;
 	}
@@ -82,7 +82,7 @@ void EngineTest::run() {
 	sprites.push_back( new Sprite( smileSprite ) );
 	sprites.push_back( new Sprite( udlrSprite ) );
 
-	for ( int i = 0; i < sprites.size(); ++i ) {
+	for ( unsigned int i = 0; i < sprites.size(); ++i ) {
 		if ( !sprites[i]->load() ) {
 			printf( "Sprite loading failed! (From EngineTest) \n" );
 		}
@@ -176,7 +176,7 @@ void EngineTest::run() {
 
 		glBindVertexArray( sprites[SMILE]->vertexArrays[0][0] );
 		glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0 );
-		glBindVertexArray( NULL );
+		glBindVertexArray( 0 );
 
 		// draw udlr sprite
 
@@ -189,13 +189,12 @@ void EngineTest::run() {
 
 		if ( press != NONE ) {
 			glBindVertexArray( sprites[UDLR]->vertexArrays[1][press] );
-			glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0 );
-			glBindVertexArray( NULL );
 		} else {
 			glBindVertexArray( sprites[UDLR]->vertexArrays[0][0] );
-			glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0 );
-			glBindVertexArray( NULL );
 		}
+
+		glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0 );
+		glBindVertexArray( 0 );
 
 		// == draw to screen ==
 		window->swapBuffer();

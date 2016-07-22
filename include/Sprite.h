@@ -13,8 +13,8 @@
 
 struct SpriteData {
 	std::string filepath;
-	int frameWidth, frameHeight;
-	std::vector < int > numFrames;
+	unsigned int frameWidth, frameHeight;
+	std::vector < unsigned int > numFrames;
 };
 
 /*
@@ -32,9 +32,9 @@ private:
 
 	SpriteHelper* spriteHelper;
 
-	std::vector < int > numFrames;
-	int frameWidth, frameHeight;
-	int numAnimations;
+	std::vector < unsigned int > numFrames;
+	unsigned int frameWidth, frameHeight;
+	unsigned int numAnimations;
 
 	std::vector < std::vector < GLuint > > vertexArrays;
 

@@ -75,7 +75,8 @@ void ShaderProgram::setActive() const {
 } // setActive
 
 void ShaderProgram::setInactive() const {
-	glUseProgram( NULL );
+	// 0 is used in OpenGL as the default unused ID
+	glUseProgram( 0 );
 	return;
 } // setInactive
 

@@ -48,10 +48,10 @@ GLint SpriteHelper::generateVertexArray( const GLint widthInPx, const GLint heig
 										 const GLfloat rectWidth, const GLfloat rectHeight ) {
 	GLfloat frame[] = {
 		// frame xyz   		    		texture coordinates
-		widthInPx,	heightInPx, 0, 		offsetX + rectWidth, 	offsetY,
-		widthInPx,	0,			0,		offsetX + rectWidth,	offsetY + rectHeight,
-		0.0f,		0,			0,		offsetX,				offsetY + rectHeight,
-		0.0f,		heightInPx,	0, 		offsetX,				offsetY
+		(GLfloat)widthInPx,	(GLfloat)heightInPx,	0, 		offsetX + rectWidth, 	offsetY,
+		(GLfloat)widthInPx,	0,						0,		offsetX + rectWidth,	offsetY + rectHeight,
+		0.0f,				0,						0,		offsetX,				offsetY + rectHeight,
+		0.0f,				(GLfloat)heightInPx,	0, 		offsetX,				offsetY
 	};
 
 	static const GLuint indices[] = {
@@ -85,7 +85,8 @@ GLint SpriteHelper::generateVertexArray( const GLint widthInPx, const GLint heig
 		glVertexAttribPointer( 1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof( GLfloat ), (GLvoid*)(3 * sizeof( GLfloat )) );
 		glEnableVertexAttribArray( 1 );
 
-	glBindVertexArray( NULL );
+	// 0 is used in OpenGL as the default unused ID
+	glBindVertexArray( 0 );
 
 	glDeleteBuffers( 1, &EBO );
 	glDeleteBuffers( 1, &VBO );
@@ -118,11 +119,16 @@ bool SpriteHelper::load( const std::string filepathIn ) {
 	}
 
 	// create OpenGL texture from image
+
 	glGenTextures( 1, &textureID );
 	glBindTexture( GL_TEXTURE_2D, textureID );
+
 	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image );
 	glGenerateMipmap( GL_TEXTURE_2D );
-	glBindTexture( GL_TEXTURE_2D, NULL );
+	
+	// 0 is used in OpenGL as the default unused ID
+	glBindTexture( GL_TEXTURE_2D, 0 );
+
 	GLenum error = glGetError();
 	if ( error ) {
 		printf( "Image %s could not be bound as a texture! OpenGL error: %d\n", filepath.c_str(), error );

@@ -5,7 +5,7 @@ Level::Level() {
 } // Level
 
 Level::~Level() {
-	for ( int i = 0; i < bgSprites.size(); ++i ) {
+	for ( unsigned int i = 0; i < bgSprites.size(); ++i ) {
 		delete bgSprites[i];
 		bgSprites[i] = nullptr;
 	}

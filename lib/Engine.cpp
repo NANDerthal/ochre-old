@@ -42,13 +42,14 @@ bool Engine::init() {
 	
 	glewExperimental = GL_TRUE;
 	
-	GLenum err = glewInit();
+	GLenum glewError = glewInit();
 	
 	// clear OpenGL error that results from GLEW initialization
-	GLenum errorClear = glGetError();
+	GLenum glGlewError = glGetError();
 	
-	if ( err != GLEW_OK ) {
-		printf( "GLEW failed to load! GLEW error: %s\n", glewGetErrorString( err ) );
+	if ( glewError != GLEW_OK ) {
+		printf( "GLEW failed to load! GLEW error: %s\n", glewGetErrorString( glewError ) );
+		printf( "GLEW failed to load! OpenGL error: %d\n", glGlewError );
 		return false;
 	}
 	

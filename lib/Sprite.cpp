@@ -15,8 +15,8 @@ Sprite::~Sprite() {
 	delete spriteHelper;
 	spriteHelper = nullptr;
 
-	for ( int i = 0; i < vertexArrays.size(); ++i ) {
-		for (int j = 0; j < vertexArrays[i].size(); ++j ) {
+	for ( unsigned int i = 0; i < vertexArrays.size(); ++i ) {
+		for ( unsigned int j = 0; j < vertexArrays[i].size(); ++j ) {
 			glDeleteVertexArrays( 1, &(vertexArrays[i][j]) );
 		}
 	}
@@ -31,10 +31,10 @@ void Sprite::generateVertices() {
 	w = (GLfloat)frameWidth / (GLfloat)spriteHelper->getWidth();
 	h = (GLfloat)frameHeight / (GLfloat)spriteHelper->getHeight();
 
-	for ( int i = 0; i < numAnimations; ++i ) {
+	for ( unsigned int i = 0; i < numAnimations; ++i ) {
 		std::vector < GLuint > animRow( numFrames[i] );
 		vertexArrays.push_back( animRow );
-		for ( int j = 0; j < numFrames[i]; ++j ) {
+		for ( unsigned int j = 0; j < numFrames[i]; ++j ) {
 			x = j*w;
 			y = i*h;
 
