@@ -15,6 +15,12 @@ Engine::Engine() {
 } // Engine
 
 Engine::~Engine() {
+	delete renderer;
+	renderer = nullptr;
+
+	delete level;
+	level = nullptr;
+
 	delete window;
 	window = nullptr;
 	
@@ -39,11 +45,11 @@ bool Engine::init() {
 	}
 
 	// Initialize GLEW (load OpenGL functionality)
-	
+
 	glewExperimental = GL_TRUE;
-	
+
 	GLenum glewError = glewInit();
-	
+
 	// clear OpenGL error that results from GLEW initialization
 	GLenum glGlewError = glGetError();
 	
@@ -52,10 +58,13 @@ bool Engine::init() {
 		printf( "GLEW failed to load! OpenGL error: %d\n", glGlewError );
 		return false;
 	}
-	
+
 	// Initialize openGL
 	glViewport( 0, 0, window->getWidth(), window->getHeight() );
 	glEnable( GL_DEPTH_TEST );
+
+	// Initialize renderer
+	renderer = new Renderer( window->getWidth(), window->getHeight() );
 
 	return true;
 } // init
