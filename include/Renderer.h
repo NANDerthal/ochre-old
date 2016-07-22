@@ -14,6 +14,8 @@
 
 #include "Camera.h"
 
+// note: angles should be in degrees
+
 class Renderer {
 
 private:
