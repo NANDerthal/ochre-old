@@ -62,13 +62,14 @@ glm::mat4 Renderer::combineTransformations( const glm::vec3 &worldLocation,
 	// create matrix to rotate object about its own coordinate system
 	glm::mat4 rotate;
 	// make it so that rotation is about the center (rather than the corner) of the object
-	rotate = glm::translate( rotate, glm::vec3( -0.5 * outputSize.x, -0.5 * outputSize.y, 0 ) );
+	rotate = glm::translate( rotate, glm::vec3( 0.5 * outputSize.x, 0.5 * outputSize.y, 0 ) );
 	rotate = glm::rotate( rotate, glm::radians( angle ), axis );
+	rotate = glm::translate( rotate, glm::vec3( -0.5 * outputSize.x, -0.5 * outputSize.y, 0 ) );
 
 	// create matrix to place object in world
 	glm::mat4 transformWorldCoords;
 	// make it so that positioning is based on the bottom center of the object
-	// recall that the current origin of the object is at the center
+	// recall that the current origin of the object is at the bottom left
 	transformWorldCoords = glm::translate( transformWorldCoords, glm::vec3( 0, 0.5 * outputSize.y, 0 ) );
 	transformWorldCoords = glm::translate( transformWorldCoords, worldLocation );
 
@@ -80,7 +81,7 @@ glm::mat4 Renderer::combineTransformations( const glm::vec3 &worldLocation,
 
 // ========== API functions ==========
 
-void Renderer::renderObject( GameObject* object, const Sprite* sprite ) {
+void Renderer::renderObject( GameObject* object, Sprite* sprite ) {
 	if ( !object->getMatrixValid() ) {
 		glm::mat4 transformation = combineTransformations(
 			object->getWorldLocation(),

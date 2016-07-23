@@ -46,7 +46,7 @@ public:
 
 	// ========== API functions ==========
 
-	void renderObject( GameObject* object, const Sprite* sprite );
+	void renderObject( GameObject* object, Sprite* sprite );
 
 };
 
