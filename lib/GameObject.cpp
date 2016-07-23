@@ -3,7 +3,20 @@
 // ========== constructors and destructors ==========
 
 GameObject::GameObject() {
+	transformationMatrix = glm::mat4(1.0f);
+	worldLocation = glm::vec3( 0, 0, 0 );
+	rotationAxis = glm::vec3( 0, 0, -1) ;
+	velocity = glm::vec3( 0, 0, 0 );
+	worldSize = glm::vec2( 10, 10 );
+	rotationAngle = 0.0f;
+
+	animationData = { 0, 0, 0 };
+	spriteID = 0;
+
+	collidable = false;
+	movable = false;
 	matrixValid = false;
+
 	return;
 } // GameObject
 
