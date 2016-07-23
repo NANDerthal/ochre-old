@@ -20,6 +20,8 @@ class EngineTest : public Engine {
 private:
 	// Place any user-defined functions here
 
+	void renderAll();
+
 public:
 
 	// ========== constructors and destructors ==========
