@@ -34,6 +34,7 @@ private:
 	unsigned int numAnimations;
 
 	std::vector < std::vector < GLuint > > vertexArrays;
+	bool loaded;
 
 	// ========== disabled functions ==========
 
@@ -66,8 +67,11 @@ public:
 	// TODO: other getting/setting functions
 	unsigned int getFrameWidth() const;
 	unsigned int getFrameHeight() const;
-	GLuint getTextureID() const;
-	GLuint getFrameID( const int animation, const int frame ) const;
+	
+	// note: these functions are not const because they load the sprite if it
+	// has not been loaded
+	GLuint getTextureID();
+	GLuint getFrameID( const int animation, const int frame );
 
 	// ========== API functions ==========
 

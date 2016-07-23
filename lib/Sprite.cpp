@@ -8,6 +8,8 @@ Sprite::Sprite( const SpriteData &spriteData ) {
 	frameHeight = spriteData.frameHeight;
 	numFrames = spriteData.numFrames;
 
+	loaded = false;
+
 	return;
 } // Sprite
 
@@ -57,28 +59,44 @@ unsigned int Sprite::getFrameHeight() const {
 	return frameHeight;
 } // getFrameHeight
 
-GLuint Sprite::getTextureID() const {
+GLuint Sprite::getTextureID() {
+	if ( !loaded ) {
+		loaded = load();
+		if ( !loaded ) {
+			printf( "Spritesheet failed to load! (Called load() from getTextureID().)\n" );
+		}
+	}
 	return spriteHelper->getTextureID();
 } // getTextureID
 
-GLuint Sprite::getFrameID( const int animation, const int frame ) const {
+GLuint Sprite::getFrameID( const int animation, const int frame ) {
+	if ( !loaded ) {
+		loaded = load();
+		if ( !loaded ) {
+			printf( "Spritesheet failed to load! (Called load() from getFrameID().)\n" );
+		}
+	}
 	return vertexArrays[ animation ][ frame ];
 } // getFrameID
 
 // ========== API functions ==========
 
 bool Sprite::load( const std::string &filepath ) {
+	if ( ( loaded ) && ( filepath == "" ) ) {
+		return true;
+	}
+
 	if ( filepath != "" ) {
 		spriteHelper->setFilepath( filepath );
 	}
 
 	if ( !spriteHelper->load() ) {
-		printf( "Spritesheet failed to load!" );
+		printf( "Spritesheet failed to load!\n" );
 		return false;
 	}
 
 	if ( spriteHelper->getHeight() % frameHeight ) {
-		printf( "Invalid sprite paramaters! Frame height does not divide sheet height." );
+		printf( "Invalid sprite paramaters! Frame height does not divide sheet height.\n" );
 		return false;
 	}
 
