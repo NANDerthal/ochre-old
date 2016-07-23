@@ -33,15 +33,15 @@ unsigned int Level::getNumObjects() const{
 	return gameObjects.size();
 } // getNumObjects
 
-GameObject const * Level::getObject( unsigned int objectID ) const {
+GameObject* Level::getObject( unsigned int objectID ) const {
 	return gameObjects[ objectID ];
 } // getObject
 
-Sprite const * Level::getSprite( unsigned int spriteID ) const {
+Sprite* Level::getSprite( unsigned int spriteID ) const {
 	return sprites[ spriteID ];
 } // getSprite
 
-Collider const * Level::getCollider( unsigned int spriteID ) const {
+const Collider* Level::getCollider( unsigned int spriteID ) const {
 	return colliders[ spriteID ];
 } // getCollider
 
@@ -63,8 +63,12 @@ void Level::pushCollider( const ColliderData &colliderData ) {
 	return;
 } // pushCollider
 
-void Level::pushGameObject() {
-	// TODO
+void Level::pushGameObject( const GameObject &gameObject ) {
+	// TODO with more detailed GameObject constructor
+	GameObject* tmp = new GameObject;
+	*tmp = gameObject;
+	gameObjects.push_back( tmp );
+	tmp = nullptr;
 	return;
 } // pushGameObject
 
