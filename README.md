@@ -1,7 +1,5 @@
 # ochre
 
-## Summary
-
 **ochre** is a 2D game that uses using OpenGL and SDL2 implemented in C++. It is being developed and maintained by NANDerthal Games.
 
 ## Documentation
