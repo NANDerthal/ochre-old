@@ -3,18 +3,31 @@
 // ========== constructors and destructors ==========
 
 Renderer::Renderer( int windowWidth, int windowHeight ) {
-	camera = new Camera;
+	// initialize camera
+	GLfloat normalize3Init[] = {
+		1.0f / (GLfloat)windowWidth,	0,								0,
+		0,								1.0f / (GLfloat)windowHeight,	0,
+		0,								0,								1.0f / 1000.0f
+	};
+
+	glm::mat3 normalize3 = glm::make_mat3( normalize3Init );
+	normalize3 = glm::transpose( normalize3 );
+
+	camera = new Camera( normalize3 );
+
+	// initialize shaderProgram
 	shaderProgram = new ShaderProgram( "sprite_shader" );
 
 	// Convert pixel-perfect coordinates to normalized device coordinates
 	// Normalized device coordinates are in the range [-1, 1], but combined
 	// with the translateOrigin matrix, we have are using the range [0, 1]
+	// Additionally, z-coordinates can now range from [-1000, 1000]
 
 	GLfloat normalizeInit[] = {
-		1.0f / (GLfloat)windowWidth,	0,								0,	0,
-		0,								1.0f / (GLfloat)windowHeight,	0,	0,
-		0,								0,								1,	0,
-		0,								0,								0,	1
+		2.0f / (GLfloat)windowWidth,	0,								0,				0,
+		0,								2.0f / (GLfloat)windowHeight,	0,				0,
+		0,								0,								1.0f / 1000.0f,	0,
+		0,								0,								0,				1
 	};
 
 	normalize = glm::make_mat4( normalizeInit );
@@ -25,9 +38,9 @@ Renderer::Renderer( int windowWidth, int windowHeight ) {
 	// This is a LEFT-handed coordinate system!
 
 	GLfloat translateOriginInit[] = {
-		2,	0,	0,	-1,
-		0,	2,	0,	-1,
-		0,	0,	2,	0,
+		1,	0,	0,	-1,
+		0,	1,	0,	-1,
+		0,	0,	-1,	0,
 		0,	0,	0,	1
 	};
 
@@ -68,13 +81,13 @@ glm::mat4 Renderer::combineTransformations( const glm::vec3 &worldLocation,
 
 	// create matrix to place object in world
 	glm::mat4 transformWorldCoords;
-	// make it so that positioning is based on the bottom center of the object
+	// make it so that positioning is based on the bottom center of the rotated object
 	// recall that the current origin of the object is at the bottom left
-	transformWorldCoords = glm::translate( transformWorldCoords, glm::vec3( 0, 0.5 * outputSize.y, 0 ) );
+	transformWorldCoords = glm::translate( transformWorldCoords, glm::vec3( -0.5 * outputSize.x, 0, 0 ) );
 	transformWorldCoords = glm::translate( transformWorldCoords, worldLocation );
 
 	// combine all transformations to single matrix
-	return transformPerspective * camera->getMatrix() *
+	return camera->getMatrix() *
 		   translateOrigin * normalize *
 		   transformWorldCoords * rotate * scale;
 } // combineTransformations( worldPosition, angle, axis )
