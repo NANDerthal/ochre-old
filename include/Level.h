@@ -11,7 +11,7 @@ struct SpriteCollider {
 	SpriteData spriteData;
 	ColliderData colliderData;
 };
-
+// TODO make interface to hold level and HUD elements
 class Level {
 
 private:

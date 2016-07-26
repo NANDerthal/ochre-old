@@ -10,7 +10,8 @@
 class Engine {
 
 protected:
-
+// TODO hold vector of level interfaces instead of a single Level*
+// this way we can select/toggle the current active element
 	Level* level;
 	Renderer* renderer;
 	Window* window;
@@ -40,6 +41,8 @@ public:
 	// underlying libraries used to implement the engine (SDL, OpenGL, etc)
 
 	void delay( int numMS );
+	// TODO add event handler to get event callbacks from interface
+	// TODO add active element selector/toggler
 
 };
 
