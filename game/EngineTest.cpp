@@ -58,13 +58,13 @@ void EngineTest::run() {
 	GameObject smileObject;
 	smileObject.setSpriteID( 0 );
 	smileObject.setWorldSize( glm::vec2( 200, 400 ) );
-	smileObject.setWorldLocation( glm::vec3( 100, 100, 0.1 ) );
+	smileObject.setWorldLocation( glm::vec3( 300.0f, 20.0f, 1000.0f ) );
 
 	GameObject udlrObject;
 	udlrObject.setSpriteID( 1 );
-	udlrObject.setWorldSize( glm::vec2( 200, 200 ) );
-	udlrObject.setWorldLocation( glm::vec3( 300, 20, 0 ) );
-	udlrObject.setRotationAngle( 30 );
+	udlrObject.setWorldSize( glm::vec2( 100, 100 ) );
+	udlrObject.setWorldLocation( glm::vec3( 300.0f, 20.0f, 0.0f ) );
+	udlrObject.setRotationAngle( 60 );
 
 	level->pushGameObject( smileObject );
 	level->pushGameObject( udlrObject );
