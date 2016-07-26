@@ -67,8 +67,10 @@ addWinFlags: COMPILER_FLAGS += $(COMPILER_FLAGS_W)
 addWinFlags: LINKER_FLAGS += $(LINKER_FLAGS_W)
 
 # ====================
+REMOVABLE = $(wildcard *.o) $(wildcard *.exe) $(wildcard *.out)
+
 clean :
-	\rm  *.o *.exe *.out
+	rm  $(REMOVABLE)
 
 %.o: src/%.cpp
 	$(CC) $(INCLUDE_PATHS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -c src/$*.cpp
