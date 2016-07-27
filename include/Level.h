@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Collider.h"
+#include "DisplayElement.h"
 #include "GameObject.h"
 #include "Sprite.h"
 
@@ -11,8 +12,8 @@ struct SpriteCollider {
 	SpriteData spriteData;
 	ColliderData colliderData;
 };
-// TODO make interface to hold level and HUD elements
-class Level {
+
+class Level : public DisplayElement {
 
 private:
 
