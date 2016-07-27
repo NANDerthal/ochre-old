@@ -17,7 +17,7 @@ Engine::~Engine() {
 
 	delete window;
 	window = nullptr;
-	
+
 	SDL_Quit();
 } // ~Engine
 
@@ -46,7 +46,7 @@ bool Engine::init() {
 
 	// clear OpenGL error that results from GLEW initialization
 	GLenum glGlewError = glGetError();
-	
+
 	if ( glewError != GLEW_OK ) {
 		printf( "GLEW failed to load! GLEW error: %s\n", glewGetErrorString( glewError ) );
 		printf( "GLEW failed to load! OpenGL error: %d\n", glGlewError );
@@ -88,11 +88,11 @@ void Engine::setActiveElement( const unsigned int activeElement ) {
 
 // ===== handle events =====
 
-bool handleEvents() {
+bool Engine::handleEvents() {
 	bool quit = false;
 
 	while ( SDL_PollEvent( &eventQueue ) != 0 ) {
-		switch ( e.type ) {
+		switch ( eventQueue.type ) {
 
 			case SDL_QUIT:
 			quit = true;
@@ -123,11 +123,11 @@ bool handleEvents() {
 			break;
 
 			case SDL_KEYDOWN:
-			displayElements[ activeElement ]->handle_KEYDOWN();
+			displayElements[ activeElement ]->handle_KEYDOWN( eventQueue.key.keysym.sym );
 			break;
 
 			case SDL_KEYUP:
-			displayElements[ activeElement ]->handle_KEYUP();
+			displayElements[ activeElement ]->handle_KEYUP( eventQueue.key.keysym.sym );
 			break;
 
 			case SDL_TEXTEDITING:

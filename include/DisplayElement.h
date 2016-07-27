@@ -25,7 +25,7 @@ public:
 
 	// Application events
 	// NOTE: SDL_QUIT should be handled in the game loop in Game.cpp
-	// virtual void SDL_QUIT();
+	// virtual void handle_QUIT();
 
 	// Android, iOS and WinRT events
 	virtual void handle_APP_TERMINATING();
@@ -40,8 +40,8 @@ public:
 	virtual void handle_SYSWMEVENT();
 
 	// Keyboard events
-	virtual void handle_KEYDOWN();
-	virtual void handle_KEYUP();
+	virtual void handle_KEYDOWN( const SDL_Keycode keycode );
+	virtual void handle_KEYUP( const SDL_Keycode keycode );
 	virtual void handle_TEXTEDITING();
 	virtual void handle_TEXTINPUT();
 	virtual void handle_KEYMAPCHANGED();

@@ -52,11 +52,11 @@ void DisplayElement::handle_SYSWMEVENT() {
 
 // ===== Keyboard events =====
 
-void DisplayElement::handle_KEYDOWN() {
+void DisplayElement::handle_KEYDOWN( const SDL_Keycode keycode ) {
 	return;
 } // handle_KEYDOWN
 
-void DisplayElement::handle_KEYUP() {
+void DisplayElement::handle_KEYUP( const SDL_Keycode keycode ) {
 	return;
 } // handle_KEYUP
 
