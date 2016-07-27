@@ -21,21 +21,11 @@ EngineTest::~EngineTest() {
 
 // ========== private member functions ==========
 
-void EngineTest::renderAll() {
-	GameObject* obj;
-	Sprite* objSprite;
-	for ( unsigned int i = 0; i < level->getNumObjects(); ++i ) {
-		obj = level->getObject(i);
-		objSprite = level->getSprite( obj->getSpriteID() );
-		renderer->renderObject( obj, objSprite );
-	}
-	return;
-}
-
 // ========== public member functions ==========
 
 void EngineTest::run() {
-	level = new Level;
+	LevelTest level = new LevelTest;
+	pushElement( level );
 
 	// populate level
 	SpriteData smileSprite = {
@@ -43,7 +33,7 @@ void EngineTest::run() {
 		512, 512,
 		{1}
 	};
-	
+
 	SpriteData udlrSprite = {
 		"img/udlr-sheet.png",
 		100, 100,
@@ -71,7 +61,6 @@ void EngineTest::run() {
 
 	// set up loop flags
 	bool quit = false;
-	SDL_Event e;
 
 	glClearColor( 0.2f, 0.3f, 0.3f, 1.0f );
 
@@ -79,11 +68,7 @@ void EngineTest::run() {
 	while ( !quit ) {
 
 		// ===== handle events =====
-		while ( SDL_PollEvent( &e ) != 0 ) {
-			if ( e.type == SDL_QUIT ) {
-				quit = true;
-			}
-		}
+		quit = handleEvents();
 
 		// ===== render =====
 
@@ -95,6 +80,8 @@ void EngineTest::run() {
 		window->swapBuffer();
 
 	}
+
+	level = nullptr;
 
 	return;
 } // run
