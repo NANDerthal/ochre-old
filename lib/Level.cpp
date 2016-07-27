@@ -72,3 +72,10 @@ void Level::pushGameObject( const GameObject &gameObject ) {
 	return;
 } // pushGameObject
 
+// ========== API functions ==========
+
+void Level::updatePhysics() {
+
+	return;
+} // updatePhysics
+

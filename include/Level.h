@@ -53,6 +53,10 @@ public:
 	// TODO with more detailed GameObject constructor
 	void pushGameObject( const GameObject &gameObject );
 
+	// ========== API functions ==========
+
+	void updatePhysics();
+
 };
 
 #endif
