@@ -3,18 +3,27 @@
 
 #include <string>
 
-#include "Level.h"
+#ifdef USING_WINDOWS
+	#include <SDL.h>
+	#include <glew.h>
+#else
+	#include <SDL2/SDL.h>
+	#include <GL/glew.h>
+#endif
+
+#include "DisplayElement.h"
 #include "Renderer.h"
 #include "Window.h"
 
 class Engine {
 
 protected:
-// TODO hold vector of level interfaces instead of a single Level*
-// this way we can select/toggle the current active element
-	Level* level;
+
+	std::vector< DisplayElement* > displayElements;
 	Renderer* renderer;
 	Window* window;
+	SDL_Event eventQueue;
+	unsigned int activeElement;
 
 public:
 
@@ -40,9 +49,23 @@ public:
 	// optimally, these should make it possible for the user to never touch the
 	// underlying libraries used to implement the engine (SDL, OpenGL, etc)
 
+	// ===== utility functions =====
+
 	void delay( int numMS );
-	// TODO add event handler to get event callbacks from interface
-	// TODO add active element selector/toggler
+
+	// ===== get and set member variables =====
+
+	// returns the ID of the element that was pushed
+	unsigned int pushElement( const DisplayElement* element );
+
+	unsigned int getActiveElement() const;
+
+	void setActiveElement( const unsigned int activeElement );
+
+	// ===== handle events =====
+
+	// returns true if a quit event was detected
+	bool handleEvents();
 
 };
 
