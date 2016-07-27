@@ -67,6 +67,10 @@ public:
 	// returns true if a quit event was detected
 	bool handleEvents();
 
+	// ===== rendering functions =====
+
+	void renderAll();
+
 };
 
 #endif

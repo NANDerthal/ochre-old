@@ -275,3 +275,18 @@ bool Engine::handleEvents() {
 	return quit;
 } // handleEvents
 
+// ===== rendering functions =====
+
+void Engine::renderAll() {
+	GameObject* obj;
+	Sprite* objSprite;
+	for ( unsigned int i = 0; i < displayElements.size(); ++i ) {
+		for ( unsigned int j = 0; j < displayElements[i]->getNumObjects(); ++j ) {
+			obj = displayElements[i]->getObject(j);
+			objSprite = displayElements[i]->getSprite( obj->getSpriteID() );
+			renderer->renderObject( obj, objSprite );
+		}
+	}
+	return;
+} // renderAll
+
