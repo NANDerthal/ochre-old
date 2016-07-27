@@ -1,6 +1,6 @@
 CC = g++
 
-INCLUDE_PATHS = -I./include -I./src -I./lib -I./test -I./game -I./backend/include -I./backend/lib
+INCLUDE_PATHS = -I./include -I./src -I./lib -I./test -I./game -I./backend/include -I./backend/lib -I./game/classes
 
 LINKER_FLAGS = -lSDL2 -lSDL2_ttf -lGLEW -lGL -lSOIL
 
@@ -17,6 +17,7 @@ EXCLUDE += $(EXCLUDE:src/%.cpp=game/%.cpp)
 
 SOURCES = $(wildcard lib/*.cpp)
 SOURCES += $(wildcard game/*.cpp)
+SOURCES += $(wildcard game/classes/*.cpp)
 SOURCES += $(wildcard backend/lib/*.cpp)
 SOURCES := $(filter-out $(EXCLUDE), $(SOURCES))
 
@@ -49,7 +50,7 @@ main-leak:
 	valgrind --leak-check=full --track-origins=yes --leak-resolution=high --show-reachable=yes ./$(EXECUTABLE_MAIN)
 
 # ========== WINDOWS WITH MINGW ==========
-INCLUDE_PATHS_W = -IC:\mingw_dev_lib\cross-tools\x86_64-w64-mingw32\include\SDL2 
+INCLUDE_PATHS_W = -IC:\mingw_dev_lib\cross-tools\x86_64-w64-mingw32\include\SDL2
 LIBRARY_PATHS_W = -LC:\mingw_dev_lib\cross-tools\x86_64-w64-mingw32\lib
 COMPILER_FLAGS_W = -Wl,-subsystem,windows -DUSING_WINDOWS
 LINKER_FLAGS_W = -lSDL2main
