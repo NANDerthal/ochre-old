@@ -26,7 +26,7 @@ MAIN_OBJECTS = test.o
 
 COMPILER_FLAGS = -std=c++11
 RELEASE_FLAGS = -w -O3 -DNDEBUG
-DEBUG_FLAGS = --debug -DDEBUG -Wall -Werror -Wextra -pedantic
+DEBUG_FLAGS = --debug -DDEBUG -Wall -Wextra -pedantic #-Werror
 ENGINE_DEBUG_FLAGS = $(DEBUG_FLAGS)
 ENGINE_DEBUG_FLAGS += -DENGINE_DEBUG
 
@@ -83,6 +83,7 @@ clean :
 
 # user-facing
 Collider.o: include/Collider.h
+DisplayElement.o: include/DisplayElement.h
 Engine.o: include/Engine.h
 GameObject.o: include/GameObject.h
 Level.o: include/Level.h
