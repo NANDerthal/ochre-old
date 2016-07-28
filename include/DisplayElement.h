@@ -1,6 +1,17 @@
 #ifndef DISPLAY_ELEMENT_H
 #define DISPLAY_ELEMENT_H
 
+#include <vector>
+
+#ifdef USING_WINDOWS
+	#include <SDL.h>
+#else
+	#include <SDL2/SDL.h>
+#endif
+
+#include "GameObject.h"
+#include "Sprite.h"
+
 // NOTE: This is a base class which should not be changed.
 // By default, all event handlers return without modifying anything.
 // This way, derived classes can override only the events they need.
@@ -8,6 +19,15 @@
 // Derived classes: Level, HUDElement
 
 class DisplayElement {
+
+protected:
+
+	// Sprites are associated by ID (index in vector), "spriteID"
+	std::vector < Sprite* > sprites;
+
+	// Game objects will be accessed by their ID (index in vector), "objectID",
+	// that is NOT related to the spriteIDs
+	std::vector < GameObject* > gameObjects;
 
 public:
 
@@ -17,6 +37,26 @@ public:
 	virtual ~DisplayElement();
 
 	// ========== API functions ==========
+
+	// ===== get and set member variables =====
+
+	// == get ==
+
+	unsigned int getNumObjects() const;
+
+	// NOTE: these objects do not return pointers to const objects because
+	// outside functions may need to change the returned objects' state
+	GameObject* getObject( unsigned int objectID ) const;
+	Sprite* getSprite( unsigned int spriteID ) const;
+
+	// == set ==
+
+	void pushSprite( const SpriteData &spriteData );
+	// TODO with more detailed GameObject constructor
+	void pushGameObject( const GameObject &gameObject );
+
+	// ===== event handling =====
+
 	// NOTE: these are all event callback functions for SDL events
 	// View all SDL events here: https://wiki.libsdl.org/SDL_EventType
 

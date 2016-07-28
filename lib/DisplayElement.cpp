@@ -12,6 +12,38 @@ DisplayElement::~DisplayElement() {
 
 // ========== API functions ==========
 
+// ===== get and set member variables =====
+
+// == get ==
+
+unsigned int DisplayElement::getNumObjects() const{
+	return gameObjects.size();
+} // getNumObjects
+
+GameObject* DisplayElement::getObject( unsigned int objectID ) const {
+	return gameObjects[ objectID ];
+} // getObject
+
+Sprite* DisplayElement::getSprite( unsigned int spriteID ) const {
+	return sprites[ spriteID ];
+} // getSprite
+
+// == set ==
+
+void DisplayElement::pushSprite( const SpriteData &spriteData ) {
+	sprites.push_back( new Sprite( spriteData ) );
+	return;
+} // pushSprite
+
+void DisplayElement::pushGameObject( const GameObject &gameObject ) {
+	// TODO with more detailed GameObject constructor
+	GameObject* tmp = new GameObject;
+	*tmp = gameObject;
+	gameObjects.push_back( tmp );
+	tmp = nullptr;
+	return;
+} // pushGameObject
+
 // ===== Android, iOS and WinRT events =====
 
 void DisplayElement::handle_APP_TERMINATING() {

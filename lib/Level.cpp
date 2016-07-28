@@ -29,18 +29,6 @@ Level::~Level() {
 
 // ===== get =====
 
-unsigned int Level::getNumObjects() const{
-	return gameObjects.size();
-} // getNumObjects
-
-GameObject* Level::getObject( unsigned int objectID ) const {
-	return gameObjects[ objectID ];
-} // getObject
-
-Sprite* Level::getSprite( unsigned int spriteID ) const {
-	return sprites[ spriteID ];
-} // getSprite
-
 const Collider* Level::getCollider( unsigned int spriteID ) const {
 	return colliders[ spriteID ];
 } // getCollider
@@ -53,24 +41,10 @@ void Level::pushSpriteCollider( const SpriteCollider &spriteCollider ) {
 	return;
 } // pushSpriteCollider
 
-void Level::pushSprite( const SpriteData &spriteData ) {
-	sprites.push_back( new Sprite( spriteData ) );
-	return;
-} // pushSprite
-
 void Level::pushCollider( const ColliderData &colliderData ) {
 	colliders.push_back( new Collider( colliderData ) );
 	return;
 } // pushCollider
-
-void Level::pushGameObject( const GameObject &gameObject ) {
-	// TODO with more detailed GameObject constructor
-	GameObject* tmp = new GameObject;
-	*tmp = gameObject;
-	gameObjects.push_back( tmp );
-	tmp = nullptr;
-	return;
-} // pushGameObject
 
 // ========== API functions ==========
 
