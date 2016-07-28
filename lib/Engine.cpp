@@ -73,7 +73,7 @@ void Engine::delay( int numMS ) {
 
 // ===== get and set member variables =====
 
-unsigned int Engine::pushElement( const DisplayElement* element ) {
+unsigned int Engine::pushElement( DisplayElement* const element ) {
 	displayElements.push_back( element );
 	return ( displayElements.size() - 1 );
 }
@@ -82,8 +82,9 @@ unsigned int Engine::getActiveElement() const {
 	return activeElement;
 } // getActiveElement
 
-void Engine::setActiveElement( const unsigned int activeElement ) {
-	return setActiveElement;
+void Engine::setActiveElement( const unsigned int activeElementIn ) {
+	activeElement = activeElementIn;
+	return;
 } // setActiveElement
 
 // ===== handle events =====

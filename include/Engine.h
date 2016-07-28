@@ -56,11 +56,11 @@ public:
 	// ===== get and set member variables =====
 
 	// returns the ID of the element that was pushed
-	unsigned int pushElement( const DisplayElement* element );
+	unsigned int pushElement( DisplayElement* const element );
 
 	unsigned int getActiveElement() const;
 
-	void setActiveElement( const unsigned int activeElement );
+	void setActiveElement( const unsigned int activeElementIn );
 
 	// ===== handle events =====
 
