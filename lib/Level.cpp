@@ -3,6 +3,7 @@
 // ========== constructors and destructors ==========
 
 Level::Level() {
+	time = SDL_GetTicks();
 	return;
 } // Level
 
@@ -49,6 +50,16 @@ void Level::pushCollider( const ColliderData &colliderData ) {
 // ========== API functions ==========
 
 void Level::updatePhysics() {
+	Uint32 newTime = SDL_GetTicks();
+	Uint32 elapsedTime = newTime - time;
+	time = newTime;
+
+	glm::vec3 newPosition;
+	for ( unsigned int i = 0; i < gameObjects.size(); ++i ) {
+		newPosition = gameObjects[i]->getWorldLocation() +
+					  (GLfloat)elapsedTime * gameObjects[i]->getVelocity();
+		gameObjects[i]->setWorldLocation( newPosition );
+	}
 
 	return;
 } // updatePhysics

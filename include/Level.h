@@ -3,6 +3,15 @@
 
 #include <vector>
 
+#ifdef USING_WINDOWS
+	#include <SDL.h>
+#else
+	#include <SDL2/SDL.h>
+#endif
+
+#include <glm/fwd.hpp>
+#include <glm/glm.hpp>
+
 #include "Collider.h"
 #include "DisplayElement.h"
 
@@ -18,6 +27,7 @@ private:
 	// Sprites (inherited) and colliders are associated by
 	// ID (index in vector), "spriteID"
 	std::vector < Collider* > colliders;
+	Uint32 time; // ms
 
 public:
 
