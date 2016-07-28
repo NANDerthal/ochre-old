@@ -1,6 +1,11 @@
 #ifndef LEVELTEST_H
 #define LEVELTEST_H
 
+#include <glm/fwd.hpp>
+#include <glm/glm.hpp>
+
+#include "Level.h"
+
 class LevelTest : public Level {
 
 private:
