@@ -6,6 +6,7 @@
 #include <glm/glm.hpp>
 
 #include "GameObject.h"
+#include "LevelTest.h"
 #include "Sprite.h"
 
 // ========== constructors and destructors ==========
@@ -24,7 +25,7 @@ EngineTest::~EngineTest() {
 // ========== public member functions ==========
 
 void EngineTest::run() {
-	LevelTest level = new LevelTest;
+	LevelTest* level = new LevelTest;
 	pushElement( level );
 
 	// populate level
