@@ -70,8 +70,8 @@ double GameObject::getFrameTime() const {
 
 // SPRITE ID INFO
 
-unsigned int GameObject::getSpriteID() const {
-	return spriteID;
+unsigned int GameObject::getAssetID() const {
+	return assetID;
 } // getSpriteID
 
 
@@ -142,8 +142,8 @@ void GameObject::setFrameTime( const double frameTimeIn ) {
 
 // SPRITE ID INFO
 
-void GameObject::setSpriteID( const int spriteIDIn ) {
-	spriteID = spriteIDIn;
+void GameObject::setAssetID( const int assetIDIn ) {
+	assetID = assetIDIn;
 	matrixValid = false;
 	return;
 } // setSpriteID

@@ -22,7 +22,7 @@ private:
 	glm::vec2 worldSize;
 	float rotationAngle; // degrees
 	GameObjectAnimation animationData;
-	unsigned int spriteID; // sprite and collider ID (from Level)
+	unsigned int assetID; // sprite and collider ID (from Level)
 	bool collidable, movable, matrixValid;
 
 public:
@@ -47,7 +47,7 @@ public:
 	unsigned int getFrame() const;
 	double getFrameTime() const;
 
-	unsigned int getSpriteID() const;
+	unsigned int getAssetID() const;
 
 	bool getCollidable() const;
 	bool getMovable() const;
@@ -65,7 +65,7 @@ public:
 	void setFrame( const unsigned int frameIn );
 	void setFrameTime( const double frameTimeIn );
 
-	void setSpriteID( const int spriteIDIn );
+	void setAssetID( const int assetIDIn );
 
 	void setCollidable( const bool collidableIn );
 	void setMovable( const bool movableIn );
