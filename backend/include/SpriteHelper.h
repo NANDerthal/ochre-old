@@ -30,6 +30,7 @@ public:
 	int getWidth() const;
 	int getHeight() const;
 	GLuint getTextureID() const;
+	std::string getFilepath() const;
 
 	void setFilepath( const std::string filepathIn );
 

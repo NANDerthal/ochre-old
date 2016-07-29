@@ -33,7 +33,11 @@ int SpriteHelper::getHeight() const {
 
 GLuint SpriteHelper::getTextureID() const {
 	return textureID;
-}
+} // getFilepath
+
+std::string SpriteHelper::getFilepath() const {
+	return filepath;
+} // getFilepath
 
 void SpriteHelper::setFilepath( const std::string filepathIn ) {
 	filepath = filepathIn;
