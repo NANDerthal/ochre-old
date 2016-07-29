@@ -59,6 +59,10 @@ unsigned int Sprite::getFrameHeight() const {
 	return frameHeight;
 } // getFrameHeight
 
+std::string Sprite::getFilepath() const {
+	return spriteHelper->getFilepath();
+} // getFilepath
+
 GLuint Sprite::getTextureID() {
 	if ( !loaded ) {
 		loaded = load();

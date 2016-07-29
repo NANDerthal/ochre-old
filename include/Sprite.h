@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+#include "Asset.h"
 #include "SpriteHelper.h"
 
 // NOTE: All frames of a spritesheet must have the same dimensions!
@@ -19,7 +20,7 @@ struct SpriteData {
  * Therefore, public members must abstract away library-related details.
  */
 
-class Sprite {
+class Sprite : public Asset {
 
 #ifdef ENGINE_DEBUG
 	friend class EngineTest;
@@ -60,14 +61,15 @@ public:
 	// ========== constructors and destructors ==========
 
 	Sprite( const SpriteData &spriteData );
-	~Sprite();
+	~Sprite() override;
 
 	// ========== get and set member variables ==========
 
 	// TODO: other getting/setting functions
 	unsigned int getFrameWidth() const;
 	unsigned int getFrameHeight() const;
-	
+	std::string getFilepath() const override;
+
 	// note: these functions are not const because they load the sprite if it
 	// has not been loaded
 	GLuint getTextureID();
