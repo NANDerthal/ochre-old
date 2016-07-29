@@ -26,6 +26,7 @@ private:
 
 	// Sprites (inherited) and colliders are associated by
 	// ID (index in vector), "spriteID"
+	// TODO: implement using Assets instead
 	std::vector < Collider* > colliders;
 	Uint32 time; // ms
 

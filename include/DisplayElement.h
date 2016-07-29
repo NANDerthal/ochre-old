@@ -1,6 +1,9 @@
 #ifndef DISPLAY_ELEMENT_H
 #define DISPLAY_ELEMENT_H
 
+#include <istream>
+#include <ostream>
+#include <string>
 #include <vector>
 
 #ifdef USING_WINDOWS
@@ -23,6 +26,7 @@ class DisplayElement {
 protected:
 
 	// Sprites are associated by ID (index in vector), "spriteID"
+	// std::vector < std::vector < Asset* > > assets; // TODO
 	std::vector < Sprite* > sprites;
 
 	// Game objects will be accessed by their ID (index in vector), "objectID",
@@ -47,11 +51,13 @@ public:
 	// NOTE: these objects do not return pointers to const objects because
 	// outside functions may need to change the returned objects' state
 	GameObject* getObject( unsigned int objectID ) const;
-	Sprite* getSprite( unsigned int spriteID ) const;
+	Sprite* getSprite( unsigned int assetID ) const;
+	// Asset* getAsset( unsigned int assetID, unsigned int assetType ) const;
 
 	// == set ==
 
 	void pushSprite( const SpriteData &spriteData );
+	// void pushAsset( _____ ); // TODO
 	// TODO with more detailed GameObject constructor
 	void pushGameObject( const GameObject &gameObject );
 
@@ -136,6 +142,12 @@ public:
 	// These are for your use, and should be allocated with SDL_RegisterEvents()
 	virtual void handle_USEREVENT();
 	virtual void handle_LASTEVENT();
+/*
+	// ===== data storage =====
+
+	//virtual void load( istream input ) = 0; // implement in derived classes
+	virtual void getSaveString( ostream output ) const;
+*/
 
 };
 

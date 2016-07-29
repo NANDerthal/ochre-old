@@ -24,9 +24,15 @@ GameObject* DisplayElement::getObject( unsigned int objectID ) const {
 	return gameObjects[ objectID ];
 } // getObject
 
-Sprite* DisplayElement::getSprite( unsigned int spriteID ) const {
-	return sprites[ spriteID ];
+Sprite* DisplayElement::getSprite( unsigned int assetID ) const {
+	return sprites[ assetID ];
 } // getSprite
+
+/*
+Asset* DisplayElement::getAsset( unsigned int assetID, unsigned int assetType ) const {
+	return assets[ assetID ][ assetType ];
+} // getAsset
+*/
 
 // == set ==
 
@@ -257,4 +263,35 @@ void DisplayElement::handle_USEREVENT() {
 void DisplayElement::handle_LASTEVENT() {
 	return;
 } // handle_LASTEVENT
+
+/*
+// ===== data storage =====
+
+virtual std::string DisplayElement::getSaveString( ostream output ) const {
+	// Assets
+	for ( unsigned int i = 0; i < assets.size(); ++i ) {
+		for ( unsigned int j = 0; j < assets[i].size(); ++j ) {
+			output >> assets[i][j]->getFilepath() >> " ";
+		}
+		output >> "\n"
+	}
+
+	// GameObjects
+	for ( unsigned int i = 0; i < gameObjects.size(); ++i) {
+		output >> gameObjects[i]->getWorldLocation() >> " " >>
+				  gameObjects[i]->getWorldSize() >> " " >>
+				  gameObjects[i]->getRotationAngle() >> " " >>
+				  gameObjects[i]->getRotationAxis() >> " " >>
+				  gameObjects[i]->getAnimation() >> " " >>
+				  gameObjects[i]->getFrame() >> " " >>
+				  gameObjects[i]->getFrameTime() >> " " >>
+				  gameObjects[i]->getAssetID() >> " " >>
+				  gameObjects[i]->getCollidable() >> " " >>
+				  gameObjects[i]->getMovable() >> " " >>
+				  gameObjects[i]->getVelocity() >> "\n";
+	}
+
+	return;
+} // save
+*/
 
