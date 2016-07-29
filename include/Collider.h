@@ -3,11 +3,13 @@
 
 #include <string>
 
+#include "Asset.h"
+
 struct ColliderData {
 	std::string filepath;
 };
 
-class Collider {
+class Collider : public Asset {
 
 private:
 
@@ -22,8 +24,13 @@ public:
 	// ========== constructors and destructors ==========
 
 	Collider( const ColliderData& colliderData );
-	~Collider();
+	~Collider() override;
+
+	// ========== get and set member variables ==========
+
+	std::string getFilepath() const override;
 
 };
 
 #endif
+

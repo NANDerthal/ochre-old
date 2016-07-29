@@ -11,3 +11,9 @@ Collider::~Collider() {
 	return;
 } // ~Collider
 
+// ========== get and set member variables ==========
+
+std::string Collider::getFilepath() const {
+	return filepath;
+} // ~getFilePath
+
