@@ -11,7 +11,7 @@ GameObject::GameObject() {
 	rotationAngle = 0.0f;
 
 	animationData = { 0, 0, 0 };
-	spriteID = 0;
+	assetID = 0;
 
 	collidable = false;
 	movable = false;
@@ -140,13 +140,13 @@ void GameObject::setFrameTime( const double frameTimeIn ) {
 } // setFrameTime
 
 
-// SPRITE ID INFO
+// ASSET ID INFO
 
 void GameObject::setAssetID( const int assetIDIn ) {
 	assetID = assetIDIn;
 	matrixValid = false;
 	return;
-} // setSpriteID
+} // setAssetID
 
 
 // INTERACTION INFO

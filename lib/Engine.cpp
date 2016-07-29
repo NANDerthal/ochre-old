@@ -284,7 +284,7 @@ void Engine::renderAll() {
 	for ( unsigned int i = 0; i < displayElements.size(); ++i ) {
 		for ( unsigned int j = 0; j < displayElements[i]->getNumObjects(); ++j ) {
 			obj = displayElements[i]->getObject(j);
-			objSprite = displayElements[i]->getSprite( obj->getSpriteID() );
+			objSprite = displayElements[i]->getSprite( obj->getAssetID() );
 			renderer->renderObject( obj, objSprite );
 		}
 	}

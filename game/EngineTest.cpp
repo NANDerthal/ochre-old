@@ -47,12 +47,12 @@ void EngineTest::run() {
 	// TODO with more detailed GameObject constructor
 
 	GameObject smileObject;
-	smileObject.setSpriteID( 0 );
+	smileObject.setAssetID( 0 );
 	smileObject.setWorldSize( glm::vec2( 200, 400 ) );
 	smileObject.setWorldLocation( glm::vec3( 300.0f, 20.0f, 1000.0f ) );
 
 	GameObject udlrObject;
-	udlrObject.setSpriteID( 1 );
+	udlrObject.setAssetID( 1 );
 	udlrObject.setWorldSize( glm::vec2( 100, 100 ) );
 	udlrObject.setWorldLocation( glm::vec3( 300.0f, 20.0f, 0.0f ) );
 	udlrObject.setRotationAngle( 60 );
