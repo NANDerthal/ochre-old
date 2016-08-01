@@ -1,6 +1,8 @@
 # ochre
 
-# **PLEASE NOTE THAT THIS VERSION OF OCHRE IS DEPRECATED!** NANDerthal games will not be providing support for this version of ochre, which requires the user to code directly in C++. The latest version, which is Python-based, can be found [here](https://github.com/NANDerthal/ochre).
+# **PLEASE NOTE THAT THIS VERSION OF OCHRE IS DEPRECATED!**
+
+NANDerthal games will not be providing support for this version of ochre, which requires the user to code directly in C++. The latest version, which is Python-based, can be found [here](https://github.com/NANDerthal/ochre).
 
 **ochre** is a 2D game that uses using OpenGL and SDL2 implemented in C++. It is being developed and maintained by NANDerthal Games.
 
